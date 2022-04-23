@@ -1,0 +1,330 @@
+.ts-content,
+.ts-logo,
+.ts-load,
+.ts-circle-cover,
+.testimonial,
+.ts-d-lg,
+.lang-lg,
+.mentor-lg {
+    display: flex;
+}
+
+.ts-content {
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ts-logo {
+    width: 100px;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 0 15px 0;
+}
+
+.ts-testimonials,
+.ts-badges {
+    position: absolute;
+}
+
+.ts-head {
+    font-family: poppins;
+    font-size: 2.6rem;
+    color: rgba(3, 9, 25, 0.85);
+}
+
+.ts-table {
+    width: 90%;
+    display: flexbox;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: #afafaf;
+    margin: 15px 5px 20px 5px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px #2200FF;
+    z-index: 5;
+}
+
+.ts-table-data::-webkit-scrollbar {
+    display: none;
+}
+
+.ts-table-head {
+    width: 100%;
+    height: fit-content;
+    background: white;
+    z-index: 5;
+}
+
+.ts-table .ts-table-head {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 4;
+}
+
+.ts-search-track {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.ts-search-track .ts-logo-tes {
+    position: absolute;
+}
+
+.ts-search {
+    display: flex;
+    align-items: center;
+    width: 30%;
+    padding: 8px 35px 8px 20px;
+    background-color: #bdbdbf;
+    border-radius: 100px;
+}
+
+.bi-search {
+    margin: 0 15px 0 5px;
+}
+
+.ts-search-input {
+    width: 90%;
+    background-color: transparent;
+    font-size: 1rem;
+    font-family: sarabun;
+}
+
+.ts-sort {
+    width: fit-content;
+    min-width: fit-content;
+    margin: 5px 15px 5px 5px;
+    text-align: center;
+    background-color: black;
+    color: white;
+}
+
+.ts-sort-value {
+    height: max-content;
+    padding: 12px 10px 12px 10px;
+    font-family: quicksand;
+    font-size: 1rem;
+    cursor: pointer;
+    border-bottom: 2px solid white;
+}
+
+.ts-sort-selector {
+    background: transparent;
+    appearance: none;
+    cursor: pointer;
+    color: white;
+    overflow: hidden;
+    max-height: fit-content;
+}
+
+.ts-sort-selector-hide {
+    max-height: 0;
+}
+
+.ts-selector-item {
+    padding: 15px 10px 15px 10px;
+    font-family: cabin;
+    cursor: pointer;
+}
+
+.ts-selector-item:hover {
+    background-color: #323232;
+}
+
+.ts-load {
+    margin: 15px 0 15px 0;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+}
+
+.ts-circle-cover {
+    width: 30px;
+    height: 30px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.ts-load-circle {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: wheat;
+}
+
+.c1 {
+    animation: load 2s ease infinite;
+}
+
+.c2 {
+    animation: load 2s ease infinite;
+    animation-delay: 0.5s;
+}
+
+.c3 {
+    animation: load 2s ease infinite;
+    animation-delay: 0.75s;
+}
+
+.c4 {
+    animation: load 2s ease infinite;
+    animation-delay: 1s;
+}
+
+.ts-table-data {
+    overflow: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    background: linear-gradient(to bottom right, #9E00FF, #2200FF);
+    max-height: 100vh;
+}
+
+.testimonial {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: transparent;
+    color: white;
+    z-index: 1;
+    margin-top: 5px;
+    padding: 10px;
+}
+
+.testimonial:hover {
+    box-shadow: 0 0 8px white;
+    cursor: pointer;
+}
+
+.ts-d-lg {
+    height: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin-right: 5px;
+}
+
+.mentor-lg {
+    width: 65px;
+    height: 65px;
+    margin: 0 5px 0 5px;
+}
+
+.lang-lg {
+    width: 60px;
+    height: 60px;
+    align-items: center;
+    padding: 5px;
+}
+
+.lg {
+    border-radius: 50%;
+}
+
+.ts-d-content {
+    width: 50%;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+.ts-details {
+    width: 20%;
+    font-family: nunito;
+}
+
+.ts-user {
+    font-size: 1.15rem;
+    font-family: fredoka;
+    color: aquamarine;
+}
+
+.ts-user-track {
+    color: gold;
+}
+
+.ts-d-content {
+    font-family: sarabun;
+    text-align: left;
+}
+
+.ts-date {
+    font-family: source-sans;
+    padding-left: 15px;
+}
+
+.ts-navigation {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+}
+
+.ts-nav-btn {
+    padding: 18px 20px 18px 20px;
+}
+
+.ts-nav-btn.ts-disabled {
+    background-color: #999;
+}
+
+.ts-nav-btn.ts-enabled {
+    background-color: white;
+    cursor: pointer;
+}
+
+.ts-nav-btn.ts-enabled:hover {
+    box-shadow: 0 0 8px black;
+    background-color: #9E00FF;
+    color: white;
+}
+
+.ts-pg-num,
+.ts-pg {
+    display: flex;
+    flex-direction: row;
+}
+
+.ts-pg {
+    width: 32px;
+    height: 32px;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 5px black;
+    border-radius: 50%;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.ts-pg.crc {
+    background-color: #2200FF;
+    color: white;
+}
+
+@keyframes load {
+    0% {
+        scale: 1;
+        background-color: wheat;
+    }
+    50% {
+        transform: scaleY(1.5) scaleX(1.5);
+        background-color: #9E00FF;
+    }
+    100% {
+        scale: 1;
+        background-color: wheat;
+    }
+}

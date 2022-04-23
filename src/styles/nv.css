@@ -1,0 +1,130 @@
+ .nv-bar {
+     position: sticky;
+     position: -webkit-sticky;
+     top: 0;
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+     align-items: center;
+     width: 100%;
+     height: 10vh;
+     background: white;
+     box-shadow: 0 0 8px #2200FF;
+ }
+ 
+ .nv-title-logo {
+     margin: 0 20px 0 20px;
+     cursor: pointer;
+ }
+ 
+ .nv-navigation,
+ .nv-link {
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+ }
+ 
+ .nv-navigation {
+     list-style: none;
+     margin: 0 15px 0 15px;
+ }
+ 
+ .nv-link {
+     margin: 0 10px 0 10px;
+     cursor: pointer;
+     font-size: 1.2rem;
+     font-family: altona;
+     color: #5C5589;
+ }
+ 
+ .nv-link-lk {
+     margin: 0 5px 0 5px;
+     padding: 10px;
+ }
+ 
+ .nv-link-logo {
+     font-size: 0.8rem;
+ }
+ 
+ .pg-content {
+     width: 100%;
+ }
+ 
+ .nv-bar section,
+ .nv-controlls,
+ .nv-view {
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+ }
+ 
+ .nv-controlls {
+     justify-self: flex-end;
+ }
+ 
+ #testimonials,
+ #badges {
+     fill: none;
+     stroke: #2200FF;
+     stroke-width: 1.5px;
+     stroke-linecap: round;
+     stroke-linejoin: round;
+     transition: all ease 0.1s;
+ }
+ 
+ #testimonials:hover,
+ #badges:hover {
+     stroke: #9E00FF;
+     transition: all ease 0.1s;
+ }
+ 
+ .nv-btn {
+     cursor: pointer;
+     margin: 5px 12px 5px 12px;
+ }
+ 
+ .ntm {
+     padding: 5px;
+     margin-right: 40px;
+     border-radius: 8px;
+     box-shadow: 0 0 6px #dc9c35;
+ }
+ 
+ .ntm:hover {
+     box-shadow: 0 0 10px #dc9c35;
+ }
+ 
+ .nv-user-control {}
+ 
+ .nv-reputation {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     color: #fff;
+     font-weight: 80;
+     font-family: lora;
+     border-radius: 100px;
+     background-clip: padding-box, border-box;
+     background-color: #20f;
+     border: 3px solid transparent;
+     background-image: linear-gradient(#130b43, #130b43), linear-gradient(#9e00ff, #20f);
+     background-origin: border-box;
+     border: 2px solid linear;
+     padding: 2px 12px 2px 12px;
+     margin-right: 8px;
+ }
+ 
+ .nv-rep-val {
+     padding: 0 5px 0 10px;
+ }
+ 
+ .nv-user-dp {
+     border-radius: 50%;
+     margin: 0 5px 0 10px;
+     cursor: pointer;
+ }
+ 
+ .nv-more {
+     margin-right: 12px;
+     cursor: pointer;
+ }
