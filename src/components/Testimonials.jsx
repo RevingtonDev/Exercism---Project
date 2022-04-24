@@ -1,9 +1,10 @@
 import React, { Component, createRef } from "react";
 
 import { Testimonial } from "./Testimonial";
+import { Track } from "./Track";
 import { Jump } from "./Jump";
 
-import { getTestimonials } from "../api/retrieve";
+import { getTestimonials, getTracks } from "../api/retrieve";
 
 import "../styles/ts.css";
 
@@ -23,19 +24,28 @@ export class Testimonials extends Component {
       search: null,
       track: null,
       sortSelectorShowing: false,
+      trackSelectorShowing: false,
     };
     this.search = createRef();
     this.sort_selector = createRef();
+    this.track_container = createRef();
     this.data = [];
+    this.tracks = [];
     this.setPage = this.setPage.bind(this);
+    this.setCurrentTrack = this.setCurrentTrack.bind(this);
   }
 
   componentDidMount() {
     this.retrieveData();
+    this.retrieveTracks();
   }
 
   changeSortSelectorState() {
     this.setState({ sortSelectorShowing: !this.state.sortSelectorShowing });
+  }
+
+  changeTrackSelectorState() {
+    this.setState({ trackSelectorShowing: !this.state.trackSelectorShowing });
   }
 
   retrieveData() {
@@ -54,11 +64,56 @@ export class Testimonials extends Component {
               <Testimonial className="ts-track" key={track.id} track={track} />
             );
           });
+          if (this.data.length < 1) {
+            this.data.push(
+              <div className="ts-no-result">No Results Found.</div>
+            );
+          }
         })
         .finally(() => {
           this.dataRetrieved(true);
         });
     }, 1000);
+  }
+
+  retrieveTracks() {
+    getTracks().then(({ tracks }) => {
+      this.tracks = [];
+      this.tracks.push(
+        <Track
+          change={this.setCurrentTrack}
+          key={0}
+          track={{ icon_url: badges }}
+        />
+      );
+      tracks.forEach((track) =>
+        this.tracks.push(
+          <Track change={this.setCurrentTrack} key={track.slug} track={track} />
+        )
+      );
+    });
+  }
+
+  updateTracks() {
+    getTracks().then(({ tracks }) => {
+      if (tracks.length === this.data.length) {
+        for (let i = 0; i < tracks.length; i++) {
+          if (tracks[i] !== this.data[i]) {
+            this.data[i] = tracks[i];
+          }
+        }
+      }
+    });
+  }
+
+  setCurrentTrack(track) {
+    this.changeTrackSelectorState();
+    this.setState({
+      page: 1,
+      track: track.title === undefined ? null : track,
+      dataRetrieved: false,
+    });
+    this.retrieveData();
   }
 
   setSearchParam(param) {
@@ -129,7 +184,13 @@ export class Testimonials extends Component {
       <div className="ts-content">
         <div className="ts-logo">
           <div className="ts-badges">
-            <img src={badges} width="100" height="100" alt="Badges-logo" />
+            <img
+              className="ts-badges-rot"
+              src={badges}
+              width="100"
+              height="100"
+              alt="Badges-logo"
+            />
           </div>
           <div className="ts-testimonials">
             <img
@@ -150,20 +211,50 @@ export class Testimonials extends Component {
         <div className="ts-table">
           <div className="ts-table-head">
             <div className="ts-search-track">
-              <img
-                className="ts-logo-track"
-                src={badges}
-                width="70"
-                height="70"
-                alt="Badges"
-              />
-              <img
-                className="ts-logo-tes"
-                src={exercism}
-                width="35"
-                height="35"
-                alt="Badges"
-              />
+              <div
+                onClick={() => {
+                  this.changeTrackSelectorState();
+                }}
+                className="ts-search-lg"
+              >
+                <img
+                  className="ts-logo-track"
+                  src={
+                    this.state.track === null
+                      ? badges
+                      : this.state.track.icon_url
+                  }
+                  width="70"
+                  height="70"
+                  alt="Badges"
+                />
+                <img
+                  className={
+                    "ts-logo-tes " +
+                    (this.state.track === null
+                      ? "ts-logo-tes-show"
+                      : "ts-logo-tes-hide")
+                  }
+                  src={exercism}
+                  width="35"
+                  height="35"
+                  alt="Badges"
+                />
+              </div>
+
+              <div
+                ref={this.track_container}
+                className={
+                  "ts-track-container " +
+                  (this.state.trackSelectorShowing
+                    ? "ts-track-selector-show"
+                    : "ts-track-selector-hide")
+                }
+              >
+                {this.tracks.map((track) => {
+                  return track;
+                })}
+              </div>
             </div>
             <div className="ts-search">
               <svg
@@ -257,7 +348,7 @@ export class Testimonials extends Component {
             <div
               className={
                 "ts-nav-btn " +
-                (this.state.page === this.state.pages
+                (this.state.page === this.state.pages || this.state.pages <= 1
                   ? "ts-disabled"
                   : "ts-enabled")
               }

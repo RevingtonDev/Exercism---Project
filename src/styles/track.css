@@ -1,0 +1,63 @@
+.ts-track {
+    width: 80px;
+    height: 80px;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+}
+
+.ts-clear-track {
+    justify-content: center;
+}
+
+.ts-nm-track {
+    justify-content: flex-start;
+}
+
+.ts-track-logo {
+    background-color: #323232;
+    height: 90px;
+    height: 90px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 50;
+}
+
+.ts-track:hover .track-clear {
+    text-shadow: 0 0 5px white;
+}
+
+.track-clear {
+    font-family: cabin;
+    color: white;
+    z-index: 55;
+}
+
+.ts-track .track-clear {
+    position: absolute;
+}
+
+.ts-track .ts-title-track {
+    position: absolute;
+}
+
+.ts-track-title {
+    z-index: 4;
+    background-color: transparent;
+    max-width: 0;
+    color: transparent;
+    margin: 5px;
+    padding: 10px;
+    background-color: transparent;
+    border-radius: 12px;
+    transition: all 0.5s ease;
+    font-family: altona;
+    font-weight: 800;
+}
+
+.ts-track:hover .ts-track-title {
+    max-width: 1000px;
+    color: black;
+    font-size: 1.1rem;
+    background-color: white;
+}

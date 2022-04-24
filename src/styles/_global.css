@@ -105,6 +105,5 @@
     user-select: none;
     outline: none;
     border: none;
-    overflow-x: hidden;
     transition: all 0.3s ease;
 }

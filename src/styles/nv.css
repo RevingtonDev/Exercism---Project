@@ -10,6 +10,8 @@
      height: 10vh;
      background: white;
      box-shadow: 0 0 8px #2200FF;
+     z-index: 1000;
+     overflow: hidden;
  }
  
  .nv-title-logo {
@@ -93,8 +95,6 @@
  .ntm:hover {
      box-shadow: 0 0 10px #dc9c35;
  }
- 
- .nv-user-control {}
  
  .nv-reputation {
      display: flex;
