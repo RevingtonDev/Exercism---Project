@@ -6,8 +6,6 @@ import dashboard from "../images/dashboard.svg";
 import tracks from "../images/tracks.svg";
 import mentoring from "../images/mentoring.svg";
 import contribute from "../images/contribute.svg";
-import badges from "../images/badges.svg";
-import testimonials from "../images/testimonials.svg";
 import notification from "../images/notifications.svg";
 import reputation from "../images/reputation.svg";
 import more from "../images/more-vertical.svg";

@@ -1,6 +1,4 @@
 .ts-track {
-    width: 80px;
-    height: 80px;
     width: fit-content;
     display: flex;
     align-items: center;
@@ -15,7 +13,8 @@
 }
 
 .ts-track-logo {
-    background-color: #323232;
+    background-color: #323232aa;
+    backdrop-filter: blur(2px);
     height: 90px;
     height: 90px;
     padding: 10px;
@@ -50,14 +49,21 @@
     padding: 10px;
     background-color: transparent;
     border-radius: 12px;
-    transition: all 0.5s ease;
+    transition: all 0.3s ease;
     font-family: altona;
+    font-size: 1.3rem;
     font-weight: 800;
 }
 
 .ts-track:hover .ts-track-title {
     max-width: 1000px;
     color: black;
-    font-size: 1.1rem;
     background-color: white;
+}
+
+.ts-tes-count {
+    font-family: nunito;
+    font-size: 1.1rem;
+    font-weight: 400;
+    transition: all 0.3s ease;
 }

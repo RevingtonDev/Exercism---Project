@@ -31,13 +31,16 @@ export class Testimonials extends Component {
     this.track_container = createRef();
     this.data = [];
     this.tracks = [];
+    this.track_counts = {};
+    this.errors = [];
+    this.tracksContainingTestimonials = [];
+    this.searchValue = "";
     this.setPage = this.setPage.bind(this);
     this.setCurrentTrack = this.setCurrentTrack.bind(this);
   }
 
   componentDidMount() {
     this.retrieveData();
-    this.retrieveTracks();
   }
 
   changeSortSelectorState() {
@@ -59,6 +62,8 @@ export class Testimonials extends Component {
         .then((res) => {
           this.setState({ pages: res.testimonials.pagination.total_pages });
           this.data = [];
+          this.tracksContainingTestimonials = res.testimonials.tracks;
+          this.track_counts = res.testimonials.track_counts;
           res.testimonials.results.forEach((track) => {
             this.data.push(
               <Testimonial className="ts-track" key={track.id} track={track} />
@@ -72,6 +77,9 @@ export class Testimonials extends Component {
         })
         .finally(() => {
           this.dataRetrieved(true);
+          if (this.tracks.length < 1) {
+            this.retrieveTracks();
+          }
         });
     }, 1000);
   }
@@ -86,23 +94,18 @@ export class Testimonials extends Component {
           track={{ icon_url: badges }}
         />
       );
-      tracks.forEach((track) =>
-        this.tracks.push(
-          <Track change={this.setCurrentTrack} key={track.slug} track={track} />
-        )
-      );
-    });
-  }
-
-  updateTracks() {
-    getTracks().then(({ tracks }) => {
-      if (tracks.length === this.data.length) {
-        for (let i = 0; i < tracks.length; i++) {
-          if (tracks[i] !== this.data[i]) {
-            this.data[i] = tracks[i];
-          }
+      tracks.forEach((track) => {
+        if (this.tracksContainingTestimonials.includes(track.slug)) {
+          this.tracks.push(
+            <Track
+              change={this.setCurrentTrack}
+              key={track.slug}
+              track={track}
+              testimonials={this.track_counts[track.slug]}
+            />
+          );
         }
-      }
+      });
     });
   }
 
@@ -117,8 +120,11 @@ export class Testimonials extends Component {
   }
 
   setSearchParam(param) {
-    this.setState({ page: 1, search: param, dataRetrieved: false });
-    this.retrieveData();
+    if (this.searchValue !== param) {
+      this.searchValue = param;
+      this.setState({ page: 1, search: param, dataRetrieved: false });
+      this.retrieveData();
+    }
   }
 
   dataRetrieved(isRetrieved) {
@@ -224,8 +230,6 @@ export class Testimonials extends Component {
                       ? badges
                       : this.state.track.icon_url
                   }
-                  width="70"
-                  height="70"
                   alt="Badges"
                 />
                 <img
@@ -236,8 +240,6 @@ export class Testimonials extends Component {
                       : "ts-logo-tes-hide")
                   }
                   src={exercism}
-                  width="35"
-                  height="35"
                   alt="Badges"
                 />
               </div>
@@ -273,6 +275,7 @@ export class Testimonials extends Component {
                 type="text"
                 name="search"
                 ref={this.search}
+                onFocus={() => (this.searchValue = this.search.current.value)}
                 onBlur={() => {
                   this.setSearchParam(this.search.current.value);
                 }}

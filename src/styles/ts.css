@@ -110,6 +110,16 @@
     margin: 10px;
 }
 
+.ts-logo-track {
+    width: 70px;
+    height: 70px;
+}
+
+.ts-logo-tes {
+    width: 35px;
+    height: 35px;
+}
+
 .ts-search-lg .ts-logo-tes {
     position: absolute;
 }
@@ -135,10 +145,11 @@
 }
 
 .ts-sort {
-    width: fit-content;
+    width: 16%;
     min-width: fit-content;
     margin: 5px 15px 5px 5px;
     text-align: center;
+    justify-content: center;
     background-color: black;
     color: white;
 }
@@ -157,6 +168,8 @@
 }
 
 .ts-sort-selector {
+    width: 16%;
+    min-width: fit-content;
     background: transparent;
     appearance: none;
     cursor: pointer;
@@ -292,8 +305,7 @@
 }
 
 .testimonial:hover {
-    box-shadow: 0 0 8px white;
-    cursor: pointer;
+    background: rgba(3, 9, 25, 0.2);
 }
 
 .ts-d-lg {
@@ -343,6 +355,21 @@
     color: gold;
 }
 
+.ts-exercise-title {
+    text-decoration: underline aqua;
+    cursor: pointer;
+}
+
+.ts-exercise-icon {
+    width: 70px;
+    height: 70px;
+    z-index: 100550;
+}
+
+.ts-exercise-details:hover .ts-exercise-icon {
+    transform: rotateY(45deg);
+}
+
 .ts-d-content {
     font-family: sarabun;
     text-align: left;
@@ -351,6 +378,31 @@
 .ts-date {
     font-family: source-sans;
     padding-left: 15px;
+    width: 15%;
+    word-wrap: break-word;
+}
+
+.testimonial .ts-link {
+    position: relative;
+}
+
+.ts-link {
+    left: 10%;
+    cursor: pointer;
+    fill: white;
+    border-radius: 50%;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ts-link:hover {
+    box-shadow: 0 0 8px black;
+}
+
+.testimonial:hover .ts-link {
+    left: 0;
 }
 
 .ts-navigation {
@@ -391,6 +443,10 @@
     flex-direction: row;
 }
 
+.ts-pg:hover {
+    box-shadow: 0 0 8px black;
+}
+
 .ts-pg {
     width: 32px;
     height: 32px;
@@ -421,5 +477,34 @@
     100% {
         scale: 1;
         background-color: wheat;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .ts-head {
+        font-size: 1.6rem;
+    }
+    .ts-search-lg,
+    .ts-logo-track {
+        width: 35px;
+        height: 35px;
+    }
+    .ts-logo-tes {
+        width: 17px;
+        height: 17px;
+    }
+    .ts-search {
+        padding: 8px 13px 8px 10px;
+    }
+    .ts-sort {
+        width: 5%;
+        font-size: 1rem;
+    }
+    .ts-sort-value {
+        font-size: 0.7rem;
+    }
+    .ts-sort-selector {
+        width: 35%;
+        font-size: 0.64rem;
     }
 }
