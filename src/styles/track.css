@@ -16,7 +16,6 @@
     background-color: #323232aa;
     backdrop-filter: blur(2px);
     height: 90px;
-    height: 90px;
     padding: 10px;
     cursor: pointer;
     z-index: 50;
@@ -66,4 +65,25 @@
     font-size: 1.1rem;
     font-weight: 400;
     transition: all 0.3s ease;
+}
+
+@media screen and (max-width: 720px) {
+    .ts-track-logo {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    .ts-track {
+        position: relative;
+        flex-direction: column;
+    }
+    .ts-track-title {
+        display: none;
+    }
+    .track-clear {
+        font-size: 0.6rem;
+    }
+    .ts-track-logo {
+        padding: 5px;
+    }
 }

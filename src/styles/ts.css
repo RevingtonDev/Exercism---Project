@@ -5,7 +5,8 @@
 .testimonial,
 .ts-d-lg,
 .lang-lg,
-.mentor-lg {
+.mentor-,
+.ts-ud {
     display: flex;
 }
 
@@ -291,6 +292,7 @@
     overflow: auto;
     background: linear-gradient(to bottom right, #9E00FF, #2200FF);
     max-height: 100vh;
+    scroll-behavior: smooth;
 }
 
 .testimonial {
@@ -306,6 +308,14 @@
 
 .testimonial:hover {
     background: rgba(3, 9, 25, 0.2);
+}
+
+.ts-ud {
+    flex-direction: row;
+    align-items: center;
+    width: 30%;
+    word-wrap: break-word;
+    margin-right: 5px;
 }
 
 .ts-d-lg {
@@ -334,6 +344,11 @@
     overflow-x: hidden;
 }
 
+.ts-mentor-ico {
+    width: 65px;
+    height: 65px;
+}
+
 .ts-d-content {
     width: 50%;
     word-wrap: break-word;
@@ -341,8 +356,13 @@
 }
 
 .ts-details {
-    width: 20%;
     font-family: nunito;
+}
+
+.ts-det {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .ts-user {
@@ -351,23 +371,16 @@
     color: aquamarine;
 }
 
+.ts-exercise {
+    font-size: 1.01rem;
+}
+
 .ts-user-track {
     color: gold;
 }
 
 .ts-exercise-title {
     text-decoration: underline aqua;
-    cursor: pointer;
-}
-
-.ts-exercise-icon {
-    width: 70px;
-    height: 70px;
-    z-index: 100550;
-}
-
-.ts-exercise-details:hover .ts-exercise-icon {
-    transform: rotateY(45deg);
 }
 
 .ts-d-content {
@@ -378,16 +391,25 @@
 .ts-date {
     font-family: source-sans;
     padding-left: 15px;
-    width: 15%;
     word-wrap: break-word;
+    text-align: center;
+    display: flex;
 }
 
-.testimonial .ts-link {
+.ts-last .ts-link {
+    position: absolute;
+    right: -50%;
+}
+
+.ts-last {
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     position: relative;
 }
 
 .ts-link {
-    left: 10%;
     cursor: pointer;
     fill: white;
     border-radius: 50%;
@@ -395,6 +417,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    appearance: none;
 }
 
 .ts-link:hover {
@@ -402,7 +425,7 @@
 }
 
 .testimonial:hover .ts-link {
-    left: 0;
+    right: 2%;
 }
 
 .ts-navigation {
@@ -484,6 +507,22 @@
     .ts-head {
         font-size: 1.6rem;
     }
+    .ts-table-head .ts-track-container {
+        top: 0;
+        width: 100%;
+        height: 100%;
+    }
+    .ts-track-container {
+        flex-direction: row;
+        min-height: 100%;
+        z-index: 4000;
+    }
+    .ts-track-selector-hide {
+        max-width: 0;
+    }
+    .ts-track-selector-show {
+        max-width: 100%;
+    }
     .ts-search-lg,
     .ts-logo-track {
         width: 35px;
@@ -494,7 +533,7 @@
         height: 17px;
     }
     .ts-search {
-        padding: 8px 13px 8px 10px;
+        padding: 8px;
     }
     .ts-sort {
         width: 5%;
@@ -506,5 +545,85 @@
     .ts-sort-selector {
         width: 35%;
         font-size: 0.64rem;
+    }
+    .testimonial {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .ts-ud,
+    .ts-d-content,
+    .ts-last {
+        width: 100%;
+    }
+    .ts-ud {
+        position: relative;
+    }
+    .ts-ud .lang-lg {
+        position: absolute;
+        left: -1%;
+        bottom: 0;
+        padding: 0;
+    }
+    .ts-lang-ico,
+    .lang-lg {
+        width: 30px;
+        height: 30px;
+    }
+    .ts-exercise {
+        font-size: 0.9rem;
+    }
+    .ts-d-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 6px 0 6px 0;
+        padding: 0 25px 0 25px;
+    }
+    .ts-last .ts-link {
+        position: static;
+    }
+    .ts-last {
+        display: flex;
+        justify-content: space-between;
+        margin: 0;
+        padding: 0;
+    }
+    .ts-link {
+        width: 50px;
+        height: 100%;
+        box-shadow: 0 0 8px black;
+        border-radius: 12px;
+    }
+    .ts-date {
+        font-size: 0.7rem;
+    }
+    .ts-navigation {
+        width: 100%;
+        justify-content: center;
+        padding: 10px;
+        text-align: center;
+    }
+    .ts-nav-btn {
+        width: 30%;
+        font-size: 0.8rem;
+        padding: 6px 8px 6px 8px;
+        border-radius: 8px;
+        letter-spacing: 0;
+        margin: 0 5px 0 5px;
+        color: white;
+        box-shadow: none;
+    }
+    .ts-nav-btn.ts-enabled {
+        background-color: #9E00FF;
+    }
+    .ts-nav-btn.ts-disabled {
+        background-color: #afafaf;
+    }
+    .ts-pg {
+        width: 25px;
+        height: 25px;
+        margin: 0 2px 0 2px;
+        font-size: 0.7rem;
     }
 }
