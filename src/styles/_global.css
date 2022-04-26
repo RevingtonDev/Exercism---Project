@@ -106,4 +106,5 @@
     outline: none;
     border: none;
     transition: all 0.3s ease;
+    scroll-behavior: smooth;
 }

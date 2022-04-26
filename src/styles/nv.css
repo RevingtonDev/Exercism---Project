@@ -1,3 +1,4 @@
+ @import './const.css';
  .nv-bar {
      position: sticky;
      position: -webkit-sticky;
@@ -6,17 +7,65 @@
      flex-direction: row;
      justify-content: space-between;
      align-items: center;
-     width: 100%;
      height: 10vh;
-     background: white;
-     box-shadow: 0 0 8px #2200FF;
      z-index: 1000;
      overflow: hidden;
  }
  
- .nv-title-logo {
+ .nv-bar.lt {
+     background: var(--lt-main-t);
+     box-shadow: 0 0 8px var(--lt-main);
+ }
+ 
+ .nv-bar.drk {
+     background: var(--drk-main-t);
+     box-shadow: 0 0 8px var(--drk-secondary);
+ }
+ 
+ .title {
      margin: 0 20px 0 20px;
      cursor: pointer;
+ }
+ 
+ .title .exercism-vector-labeled {
+     width: 140px;
+     height: 80px;
+ }
+ 
+ .title.lt .exercism-vector-labeled {
+     fill: var(--lt-main-nv);
+ }
+ 
+ .title.drk .exercism-vector-labeled {
+     fill: var(--lt-main-t);
+ }
+ 
+ .title .theme-change-dialogue {
+     position: absolute;
+     overflow: visible;
+ }
+ 
+ .nv-link .exercism-dashboard,
+ .nv-link .exercism-tracks,
+ .nv-link .exercism-mentoring,
+ .nv-link .exercism-contribute {
+     width: 30px;
+     height: 30px;
+     fill: none;
+ }
+ 
+ .nv-link.lt .exercism-dashboard,
+ .nv-link.lt .exercism-tracks,
+ .nv-link.lt .exercism-mentoring,
+ .nv-link.lt .exercism-contribute {
+     stroke: var(--lt-main-sv);
+ }
+ 
+ .nv-link.drk .exercism-dashboard,
+ .nv-link.drk .exercism-tracks,
+ .nv-link.drk .exercism-mentoring,
+ .nv-link.drk .exercism-contribute {
+     stroke: var(--drk-main-sv);
  }
  
  .nv-navigation,
@@ -32,24 +81,26 @@
  }
  
  .nv-link {
-     margin: 0 10px 0 10px;
+     margin: 0 10px 0 5px;
      cursor: pointer;
      font-size: 1.2rem;
      font-family: altona;
-     color: #5C5589;
+ }
+ 
+ .nv-link.lt {
+     color: var(--lt-main-sv);
+ }
+ 
+ .nv-link.drk {
+     color: var(--drk-main-sv);
  }
  
  .nv-link-lk {
-     margin: 0 5px 0 5px;
      padding: 10px;
  }
  
  .nv-link-logo {
      font-size: 0.8rem;
- }
- 
- .pg-content {
-     width: 100%;
  }
  
  .nv-bar section,
@@ -64,20 +115,50 @@
      justify-self: flex-end;
  }
  
- #testimonials,
- #badges {
+ .nv-btn-s .exercism-testimonials,
+ .nv-btn-s .exercism-badges,
+ .nv-btn-s .exercism-notifications,
+ .nv-reputation .exercism-reputation {
+     width: 24px;
+     height: 24px;
      fill: none;
-     stroke: #2200FF;
      stroke-width: 1.5px;
      stroke-linecap: round;
      stroke-linejoin: round;
      transition: all ease 0.1s;
  }
  
- #testimonials:hover,
- #badges:hover {
-     stroke: #9E00FF;
+ .nv-btn-s.lt .exercism-testimonials,
+ .nv-btn-s.lt .exercism-badges {
+     stroke: var(--lt-main);
+ }
+ 
+ .nv-btn-s.drk .exercism-testimonials,
+ .nv-btn-s.drk .exercism-badges {
+     stroke: var(--drk-main);
+ }
+ 
+ .nv-btn-s.lt .exercism-notifications {
+     stroke: var(--lt-shine);
+ }
+ 
+ .nv-btn-s.drk .exercism-notifications {
+     stroke: var(--lt-main-t);
+ }
+ 
+ .nv-reputation .exercism-reputation {
+     stroke: gold;
+     margin: 1px 2px 1px 2px;
+ }
+ 
+ .nv-btn-s .exercism-testimonials:hover,
+ .nv-btn-s .exercism-badges:hover {
+     stroke: var(--lt-secondary);
      transition: all ease 0.1s;
+ }
+ 
+ .nv-btn-s {
+     margin-right: 40px;
  }
  
  .nv-btn {
@@ -86,14 +167,117 @@
  }
  
  .ntm {
-     padding: 5px;
-     margin-right: 40px;
+     width: 40px;
+     height: 40px;
      border-radius: 8px;
-     box-shadow: 0 0 6px #dc9c35;
+     padding: 5px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
  }
  
- .ntm:hover {
-     box-shadow: 0 0 10px #dc9c35;
+ .ntm.lt {
+     box-shadow: 0 0 6px var(--lt-shine);
+ }
+ 
+ .ntm.lt:hover {
+     box-shadow: 0 0 10px var(--lt-shine);
+ }
+ 
+ .ntm.drk {
+     box-shadow: 0 0 6px var(--lt-main-t);
+ }
+ 
+ .ntm.drk:hover {
+     box-shadow: 0 0 10px var(--lt-main-t);
+ }
+ 
+ .theme-main-circle,
+ .theme-helping-circle {
+     border-radius: 50%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     z-index: 5;
+     overflow: -moz-hidden-unscrollable;
+ }
+ 
+ .theme-main-circle.lt {
+     background: var(--lt-shine);
+     width: 14px;
+     height: 14px;
+ }
+ 
+ .theme-main-circle.drk {
+     background: #fff;
+     width: 24px;
+     height: 24px;
+ }
+ 
+ .theme-light-shine {
+     width: 6px;
+     height: 6px;
+     border-radius: 50%;
+ }
+ 
+ .theme-main-circle .theme-light-shine,
+ .nv-btn .theme-helping-circle {
+     position: absolute;
+ }
+ 
+ .theme-main-circle .theme-light-shine.lt {
+     background-color: var(--lt-shine);
+ }
+ 
+ .theme-main-circle .theme-light-shine.drk {
+     background-color: var(--lt-main-t);
+ }
+ 
+ .theme-helping-circle {
+     width: 20px;
+     height: 20px;
+ }
+ 
+ .theme-helping-circle.lt {
+     visibility: hidden;
+ }
+ 
+ .theme-helping-circle.drk {
+     visibility: visible;
+     background-color: var(--drk-main-t);
+     transform: translateX(6px) translateY(-6px);
+ }
+ 
+ .shine1.lt {
+     transform: translateY(-12px);
+ }
+ 
+ .shine2.lt {
+     transform: translateY(-8px) translateX(8px);
+ }
+ 
+ .shine3.lt {
+     transform: translateY(12px);
+ }
+ 
+ .shine4.lt {
+     transform: translateY(8px) translateX(8px);
+ }
+ 
+ .shine5.lt {
+     transform: translateX(12px);
+ }
+ 
+ .shine6.lt {
+     transform: translateY(8px) translateX(-8px);
+ }
+ 
+ .shine7.lt {
+     transform: translateX(-12px);
+ }
+ 
+ .shine8.lt {
+     transform: translateY(-8px) translateX(-8px);
  }
  
  .nv-reputation {
@@ -105,13 +289,16 @@
      font-family: lora;
      border-radius: 100px;
      background-clip: padding-box, border-box;
-     background-color: #20f;
-     border: 3px solid transparent;
-     background-image: linear-gradient(#130b43, #130b43), linear-gradient(#9e00ff, #20f);
+     background-color: var(--lt-main);
+     border: 3px solid #00000000;
      background-origin: border-box;
      border: 2px solid linear;
      padding: 2px 12px 2px 12px;
      margin-right: 8px;
+ }
+ 
+ .nv-reputation {
+     background-image: linear-gradient(var(--lt-main-nv), var(--lt-main-nv)), linear-gradient(var(--lt-secondary), #20f);
  }
  
  .nv-rep-val {
@@ -124,7 +311,23 @@
      cursor: pointer;
  }
  
- .nv-more {
+ .nv-user-control .exercism-more-vertical {
+     width: 20px;
+     height: 20px;
+     fill: none;
+     stroke-width: 1.5px;
      margin-right: 12px;
      cursor: pointer;
+ }
+ 
+ .nv-user-control.lt .exercism-more-vertical {
+     stroke: black;
+ }
+ 
+ .nv-user-control.drk .exercism-more-vertical {
+     stroke: white;
+ }
+ 
+ .pg-content {
+     width: 100%;
  }

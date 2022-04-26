@@ -1,3 +1,4 @@
+@import './const.css';
 .ts-content,
 .ts-logo,
 .ts-load,
@@ -13,9 +14,18 @@
 .ts-content {
     width: 100%;
     height: 100%;
+    min-height: 90vh;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+}
+
+.ts-content.lt {
+    background-color: var(--lt-main-t)
+}
+
+.ts-content.drk {
+    background-color: var(--drk-main-content)
 }
 
 .ts-logo {
@@ -31,8 +41,55 @@
     position: absolute;
 }
 
+.ts-badges {
+    width: 100px;
+    height: 100px;
+}
+
+.ts-badges .exercism-badges {
+    width: 100px;
+    height: 100px;
+    fill: none;
+}
+
+.ts-badges.lt .exercism-badges,
+.ts-testimonials.lt .exercism-testimonials {
+    stroke: var(--drk-main-t);
+}
+
+.ts-badges.drk .exercism-badges,
+.ts-testimonials.drk .exercism-testimonials {
+    stroke: var(--drk-secondary);
+}
+
+.ts-testimonials .exercism-testimonials {
+    width: 40px;
+    height: 40px;
+    fill: none;
+    stroke-width: 1.5px;
+}
+
 .ts-badges-rot {
     animation: rot-badges 2s cubic-bezier(0.9, 0.57, 0.21, 0.36) forwards infinite;
+}
+
+.ts-lg {
+    display: inline;
+}
+
+.ts-lg .exercism-chevron-down {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke-width: 2px;
+}
+
+.ts-lg.lt .exercism-chevron-down {
+    stroke: var(--drk-main-t);
+}
+
+.ts-lg.drk .exercism-chevron-down {
+    stroke: var(--drk-secondary);
 }
 
 @keyframes rot-badges {
@@ -50,7 +107,14 @@
 .ts-head {
     font-family: poppins;
     font-size: 2.6rem;
-    color: rgba(3, 9, 25, 0.85);
+}
+
+.ts-head.lt {
+    color: var(--lt-secondary-d-light);
+}
+
+.ts-head.drk {
+    color: var(--drk-secondary);
 }
 
 .ts-table {
@@ -60,11 +124,17 @@
     justify-content: center;
     align-items: center;
     overflow: visible;
-    background-color: #afafaf;
     margin: 15px 5px 20px 5px;
     border-radius: 8px;
-    box-shadow: 0 0 8px #2200FF;
     z-index: 5;
+}
+
+.ts-table.lt {
+    box-shadow: 0 0 8px var(--lt-main);
+}
+
+.ts-table.drk {
+    box-shadow: 0 0 8px var(--lt-main-t);
 }
 
 .ts-table-data::-webkit-scrollbar {
@@ -72,23 +142,30 @@
 }
 
 .ts-table-head {
-    width: 100%;
-    height: fit-content;
-    background: white;
+    max-width: 100%;
     z-index: 5;
     border-radius: 8px 8px 0 0;
+}
+
+.ts-table-head.lt,
+.ts-navigation.lt {
+    background: var(--lt-main-t);
+}
+
+.ts-table-head.drk,
+.ts-navigation.drk {
+    background: var(--drk-main-content);
 }
 
 .ts-table .ts-table-head {
     position: sticky;
     top: 0;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     z-index: 4;
 }
 
-.ts-search-track {
+.ts-sort-track {
     justify-content: center;
     align-items: center;
     cursor: pointer;
@@ -102,13 +179,23 @@
     display: none;
 }
 
-.ts-search-lg {
+.ts-sort-track-lg {
     width: 70px;
     height: 70px;
+    margin: 10px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.ts-lg-track {
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 10px;
 }
 
 .ts-logo-track {
@@ -116,67 +203,146 @@
     height: 70px;
 }
 
+.ts-logo-track .exercism-badges {
+    width: 100%;
+    height: 100%;
+    fill: none;
+}
+
+.ts-logo-track.lt .exercism-badges {
+    stroke: var(--drk-main-t);
+}
+
+.ts-logo-track.drk .exercism-badges {
+    stroke: var(--lt-main-t);
+}
+
 .ts-logo-tes {
     width: 35px;
     height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.ts-search-lg .ts-logo-tes {
+.ts-sort-track-lg .ts-logo-tes,
+.ts-sort-track-lg .ts-track-drop-down {
     position: absolute;
+}
+
+.ts-sort-track-lg .ts-track-drop-down {
+    right: -15px;
+}
+
+.ts-track-drop-down {
+    height: 14px;
+    width: 14px;
+    fill: none;
+    stroke-width: 2px;
+}
+
+.ts-track-drop-down.up {
+    transform: rotateZ(180deg);
+}
+
+.ts-track-drop-down.lt {
+    stroke: var(--drk-main-content);
+}
+
+.ts-track-drop-down.drk {
+    stroke: var(--lt-main-t);
+}
+
+.ts-logo-tes .exercism-testimonials {
+    width: 90%;
+    height: 90%;
+    fill: none;
+}
+
+.ts-logo-tes.lt .exercism-testimonials {
+    stroke: var(--drk-main-t);
+}
+
+.ts-logo-tes.drk .exercism-testimonials {
+    stroke: var(--lt-main-t);
+}
+
+.ts-table-head .ts-search {
+    position: absolute;
+    right: 0;
 }
 
 .ts-search {
     display: flex;
     align-items: center;
-    width: 30%;
-    padding: 8px 35px 8px 20px;
-    background-color: #bdbdbf;
-    border-radius: 100px;
+    margin-right: 15px;
+    padding: 8px 10px 8px 10px;
+    border-radius: 8px;
+    background-color: var(--search-bg);
 }
 
-.bi-search {
+.ts-search .exercism-search {
+    width: 30px;
+    height: 30px;
+    fill: var(--drk-secondary-content);
+    stroke: none;
+}
+
+.exercism-search {
     margin: 0 15px 0 5px;
 }
 
 .ts-search-input {
-    width: 90%;
+    max-width: fit-content;
     background-color: transparent;
     font-size: 1rem;
+    margin-right: 5px;
     font-family: sarabun;
 }
 
 .ts-sort {
-    width: 16%;
-    min-width: fit-content;
-    margin: 5px 15px 5px 5px;
+    margin-left: 15px;
     text-align: center;
+    display: flex;
     justify-content: center;
-    background-color: black;
-    color: white;
+    top: 0;
 }
 
 .ts-sort-value {
-    height: max-content;
+    width: 150px;
     padding: 12px 10px 12px 10px;
     font-family: quicksand;
     font-size: 1rem;
     cursor: pointer;
     border-bottom: 2px solid white;
+    border-radius: 8px;
+}
+
+.ts-sort-value.lt {
+    background-color: black;
+    color: white;
+}
+
+.ts-sort-value.drk {
+    background-color: white;
+    color: black;
 }
 
 .ts-sort .ts-sort-selector {
+    top: 75%;
     position: absolute;
 }
 
 .ts-sort-selector {
-    width: 16%;
-    min-width: fit-content;
     background: transparent;
     appearance: none;
-    cursor: pointer;
     color: white;
     overflow: hidden;
     max-height: 1000px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
 }
 
 .ts-sort-selector-hide {
@@ -184,7 +350,7 @@
 }
 
 .ts-selector-item {
-    padding: 15px 10px 15px 10px;
+    padding: 15px;
     font-family: cabin;
     cursor: pointer;
     background: #000;
@@ -195,7 +361,6 @@
 }
 
 .ts-track-container {
-    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -262,22 +427,22 @@
     background-color: wheat;
 }
 
-.c1 {
-    animation: load 2s ease infinite;
+.c1.lt {
+    animation: load-lt 2s ease infinite;
 }
 
-.c2 {
-    animation: load 2s ease infinite;
+.c2.lt {
+    animation: load-lt 2s ease infinite;
     animation-delay: 0.5s;
 }
 
-.c3 {
-    animation: load 2s ease infinite;
+.c3.lt {
+    animation: load-lt 2s ease infinite;
     animation-delay: 0.75s;
 }
 
-.c4 {
-    animation: load 2s ease infinite;
+.c4.lt {
+    animation: load-lt 2s ease infinite;
     animation-delay: 1s;
 }
 
@@ -372,7 +537,11 @@
 }
 
 .ts-exercise {
-    font-size: 1.01rem;
+    font-size: 0.95rem;
+    position: relative;
+    overflow: visible;
+    display: flexbox;
+    align-items: center;
 }
 
 .ts-user-track {
@@ -381,6 +550,22 @@
 
 .ts-exercise-title {
     text-decoration: underline aqua;
+}
+
+.ts-exercise .ts-exercise-icon {
+    position: absolute;
+    right: 0;
+}
+
+.ts-exercise-icon {
+    width: 60px;
+    height: 0;
+    z-index: 2000;
+    align-self: center;
+}
+
+.ts-exercise:hover .ts-exercise-icon {
+    height: 60px;
 }
 
 .ts-d-content {
@@ -420,6 +605,13 @@
     appearance: none;
 }
 
+.ts-link .exercism-arrow-right {
+    width: 24px;
+    height: 24px;
+    stroke: none;
+    fill: white;
+}
+
 .ts-link:hover {
     box-shadow: 0 0 8px black;
 }
@@ -433,7 +625,6 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    background-color: white;
     font-family: nunito;
     font-weight: 900;
     letter-spacing: 2px;
@@ -488,7 +679,7 @@
     color: white;
 }
 
-@keyframes load {
+@keyframes load-lt {
     0% {
         scale: 1;
         background-color: wheat;
@@ -525,12 +716,12 @@
     }
     .ts-search-lg,
     .ts-logo-track {
-        width: 35px;
-        height: 35px;
+        width: 45px;
+        height: 45px;
     }
     .ts-logo-tes {
-        width: 17px;
-        height: 17px;
+        width: 20px;
+        height: 20px;
     }
     .ts-search {
         padding: 8px;
@@ -580,6 +771,12 @@
         margin: 6px 0 6px 0;
         padding: 0 25px 0 25px;
     }
+    .ts-exercise {
+        cursor: default;
+    }
+    .ts-exercise-icon {
+        display: none;
+    }
     .ts-last .ts-link {
         position: static;
     }
@@ -625,5 +822,8 @@
         height: 25px;
         margin: 0 2px 0 2px;
         font-size: 0.7rem;
+    }
+    .ts-search-input {
+        font-size: 0.65rem;
     }
 }

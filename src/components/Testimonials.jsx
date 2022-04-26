@@ -8,12 +8,11 @@ import { getTestimonials, getTracks } from "../api/retrieve";
 
 import "../styles/ts.css";
 
-import badges from "../images/badges.svg";
-import testimonials from "../images/testimonials.svg";
-import chevron from "../images/chevron-down.svg";
-import exercism from "../images/exercism.svg";
+import { badges, testimonials, chevron_down, search } from "./Images";
+import { ThemeContext } from "../theme/ThemeContext";
 
 export class Testimonials extends Component {
+  static contextType = ThemeContext;
   constructor(props) {
     super(props);
     this.state = {
@@ -71,7 +70,9 @@ export class Testimonials extends Component {
           });
           if (this.data.length < 1) {
             this.data.push(
-              <div className="ts-no-result">No Results Found.</div>
+              <div className={"ts-no-result " + (this.context ? "lt" : "drk")}>
+                No Results Found.
+              </div>
             );
           }
         })
@@ -87,13 +88,7 @@ export class Testimonials extends Component {
   retrieveTracks() {
     getTracks().then(({ tracks }) => {
       this.tracks = [];
-      this.tracks.push(
-        <Track
-          change={this.setCurrentTrack}
-          key={0}
-          track={{ icon_url: badges }}
-        />
-      );
+      this.tracks.push(<Track change={this.setCurrentTrack} key={0} />);
       tracks.forEach((track) => {
         if (this.tracksContainingTestimonials.includes(track.slug)) {
           this.tracks.push(
@@ -111,18 +106,21 @@ export class Testimonials extends Component {
 
   setCurrentTrack(track) {
     this.changeTrackSelectorState();
-    this.setState({
-      page: 1,
-      track: track.title === undefined ? null : track,
-      dataRetrieved: false,
-    });
-    this.retrieveData();
+    if (this.state.track !== (track === undefined ? null : track)) {
+      this.setState({
+        page: 1,
+        pages: 1,
+        track: track === undefined ? null : track,
+        dataRetrieved: false,
+      });
+      this.retrieveData();
+    }
   }
 
   setSearchParam(param) {
     if (this.searchValue !== param) {
       this.searchValue = param;
-      this.setState({ page: 1, search: param, dataRetrieved: false });
+      this.setState({ page: 1, pages: 1, search: param, dataRetrieved: false });
       this.retrieveData();
     }
   }
@@ -137,13 +135,16 @@ export class Testimonials extends Component {
   }
 
   changeSort(sort, show) {
-    this.sort_selector.current.innerHTML = show;
-    this.sort_selector.current.blur();
-    this.setState({ page: 1, sort: sort, dataRetrieved: false });
-    this.retrieveData();
+    if (this.state.sort !== sort) {
+      this.sort_selector.current.innerHTML = show;
+      this.sort_selector.current.blur();
+      this.setState({ page: 1, pages: 1, sort: sort, dataRetrieved: false });
+      this.retrieveData();
+    }
   }
 
   render() {
+    let theme = this.context ? "lt" : "drk";
     let tableData;
     if (this.state.dataRetrieved) {
       tableData = this.data;
@@ -151,16 +152,16 @@ export class Testimonials extends Component {
       tableData = (
         <div className="ts-load">
           <div className="ts-circle-cover">
-            <div className="ts-load-circle c1"></div>
+            <div className={"ts-load-circle c1 " + theme}></div>
           </div>
           <div className="ts-circle-cover">
-            <div className="ts-load-circle c2"></div>
+            <div className={"ts-load-circle c2 " + theme}></div>
           </div>
           <div className="ts-circle-cover">
-            <div className="ts-load-circle c3"></div>
+            <div className={"ts-load-circle c3 " + theme}></div>
           </div>
           <div className="ts-circle-cover">
-            <div className="ts-load-circle c4"></div>
+            <div className={"ts-load-circle c4 " + theme}></div>
           </div>
         </div>
       );
@@ -187,61 +188,48 @@ export class Testimonials extends Component {
       }
     }
     return (
-      <div className="ts-content">
+      <div className={"ts-content " + theme}>
         <div className="ts-logo">
-          <div className="ts-badges">
-            <img
-              className="ts-badges-rot"
-              src={badges}
-              width="100"
-              height="100"
-              alt="Badges-logo"
-            />
-          </div>
-          <div className="ts-testimonials">
-            <img
-              src={testimonials}
-              width="40"
-              height="40"
-              alt="Testimonials-logo"
-            />
-          </div>
+          <div className={"ts-badges ts-badges-rot " + theme}>{badges}</div>
+          <div className={"ts-testimonials " + theme}>{testimonials}</div>
         </div>
-        <div className="ts-head">Testimonials I've left.</div>
-        <div className="ts-lg">
-          <img src={chevron} width="25" height="25" alt="chevron-down" />
-          <img src={chevron} width="25" height="25" alt="chevron-down" />
-          <img src={chevron} width="25" height="25" alt="chevron-down" />
+        <div className={"ts-head " + theme}>Testimonials I've left.</div>
+        <div className={"ts-lg " + theme}>
+          {chevron_down}
+          {chevron_down}
+          {chevron_down}
         </div>
 
-        <div className="ts-table">
-          <div className="ts-table-head">
-            <div className="ts-search-track">
+        <div className={"ts-table " + theme}>
+          <div className={"ts-table-head " + theme}>
+            <div className="ts-sort-track">
               <div
                 onClick={() => {
                   this.changeTrackSelectorState();
                 }}
-                className="ts-search-lg"
+                className="ts-sort-track-lg"
               >
-                <img
-                  className="ts-logo-track"
-                  src={
-                    this.state.track === null
-                      ? badges
-                      : this.state.track.icon_url
-                  }
-                  alt="Badges"
-                />
-                <img
+                {this.state.track === null ? (
+                  <div className="ts-lg-track">
+                    <div className={"ts-logo-track " + theme}>{badges}</div>
+                    <div className={"ts-logo-tes " + theme}>{testimonials}</div>
+                  </div>
+                ) : (
+                  <img
+                    src={this.state.track.icon_url}
+                    alt="Icon"
+                    className="ts-logo-track"
+                  />
+                )}
+                <div
                   className={
-                    "ts-logo-tes " +
-                    (this.state.track === null
-                      ? "ts-logo-tes-show"
-                      : "ts-logo-tes-hide")
+                    "ts-track-drop-down " +
+                    (this.state.trackSelectorShowing ? "up " : "down ") +
+                    theme
                   }
-                  src={exercism}
-                  alt="Badges"
-                />
+                >
+                  {chevron_down}
+                </div>
               </div>
 
               <div
@@ -257,18 +245,48 @@ export class Testimonials extends Component {
                   return track;
                 })}
               </div>
-            </div>
-            <div className="ts-search">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                fill="#131313"
-                className="bi bi-search"
-                viewBox="0 0 16 16"
+            </div>{" "}
+            <div className="ts-sort">
+              <div
+                className={"ts-sort-value " + theme}
+                ref={this.sort_selector}
+                onClick={() => {
+                  this.changeSortSelectorState();
+                }}
               >
-                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-              </svg>
+                {this.state.sort === 0 ? "Sort by Newest" : "Sort by Oldest"}
+              </div>
+              <div
+                className={
+                  "ts-sort-selector " +
+                  (this.state.sortSelectorShowing
+                    ? "ts-sort-selector-show "
+                    : "ts-sort-selector-hide ") +
+                  theme
+                }
+              >
+                <div
+                  onClick={() => {
+                    this.changeSortSelectorState();
+                    this.changeSort(0, "Sort by Newest");
+                  }}
+                  className={"ts-selector-item " + theme}
+                >
+                  Sort by Newest
+                </div>
+                <div
+                  onClick={() => {
+                    this.changeSortSelectorState();
+                    this.changeSort(1, "Sort by Oldest");
+                  }}
+                  className="ts-selector-item"
+                >
+                  Sort by Oldest
+                </div>
+              </div>
+            </div>
+            <div className={"ts-search " + theme}>
+              {search}
 
               <input
                 className="ts-search-input"
@@ -287,53 +305,14 @@ export class Testimonials extends Component {
                 placeholder="Filter by exercise title."
               />
             </div>
-            <div className="ts-sort">
-              <div
-                className="ts-sort-value"
-                ref={this.sort_selector}
-                onClick={() => {
-                  this.changeSortSelectorState();
-                }}
-              >
-                {this.state.sort === 0
-                  ? "Sort by Most Recent"
-                  : "Sort by Oldest"}
-              </div>
-              <div
-                className={
-                  "ts-sort-selector " +
-                  (this.state.sortSelectorShowing
-                    ? "ts-sort-selector-show"
-                    : "ts-sort-selector-hide")
-                }
-              >
-                <div
-                  onClick={() => {
-                    this.changeSortSelectorState();
-                    this.changeSort(0, "Sort by Most Recent");
-                  }}
-                  className="ts-selector-item"
-                >
-                  Sort by Most Recent
-                </div>
-                <div
-                  onClick={() => {
-                    this.changeSortSelectorState();
-                    this.changeSort(1, "Sort by Oldest");
-                  }}
-                  className="ts-selector-item"
-                >
-                  Sort by Oldest
-                </div>
-              </div>
-            </div>
           </div>
-          <div className="ts-table-data">{tableData}</div>
-          <div className="ts-navigation">
+          <div className={"ts-table-data " + theme}>{tableData}</div>
+          <div className={"ts-navigation " + theme}>
             <div
               className={
                 "ts-nav-btn " +
-                (this.state.page === 1 ? "ts-disabled" : "ts-enabled")
+                (this.state.page === 1 ? "ts-disabled " : "ts-enabled ") +
+                theme
               }
               onClick={() => {
                 if (this.state.page > 1) {
