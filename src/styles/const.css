@@ -4,8 +4,11 @@
     --lt-main-nv: #130B43;
     --lt-main-sv: #5C5589;
     --lt-secondary: #9E00FF;
+    --lt-secondary-sv: wheat;
     --lt-secondary-d-dark: rgba(3, 9, 25, 0.2);
     --lt-secondary-d-light: rgba(3, 9, 25, 0.85);
+    --lt-secondary-hover: #323232;
+    --lt-disabled: #999;
     --lt-shine: #deb600;
     --lt-additional: #20f;
     --lt-disabled: #999;
@@ -17,6 +20,9 @@
     --drk-secondary: rgb(139, 180, 255);
     --drk-secondary-d-dark: rgb(59, 83, 163);
     --drk-secondary-d-light: rgb(131, 250, 214);
+    --drk-secondary-hover: #afafaf;
     --drk-disabled: #424242;
     --search-bg: #bdbdbf;
+    --const-highlight: aquamarine;
+    --const-highlight-shine: gold;
 }

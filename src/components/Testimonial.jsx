@@ -2,10 +2,8 @@ import { Component } from "react";
 
 import "../styles/ts.css";
 import { arrow_right } from "./Images";
-import { ThemeContext } from "../theme/ThemeContext";
 
 export class Testimonial extends Component {
-  static contextType = ThemeContext;
   constructor(props) {
     super(props);
     this.updated = this.getUpdated(new Date(props.track.created_at));
@@ -35,9 +33,8 @@ export class Testimonial extends Component {
   }
 
   render() {
-    let theme = this.context ? "lt" : "drk";
     return (
-      <div className={"testimonial " + theme}>
+      <div className="testimonial">
         <div className="ts-ud">
           <div className="ts-d-lg">
             <div className="lang-lg">
@@ -59,16 +56,14 @@ export class Testimonial extends Component {
 
           <div className="ts-details">
             <div className="ts-det">
-              <div className={"ts-user " + theme}>
-                {this.props.track.mentor.handle}
-              </div>
+              <div className="ts-user">{this.props.track.mentor.handle}</div>
               <div className="ts-exercise">
                 on&nbsp;
-                <span className={"ts-exercise-title " + theme}>
+                <span className="ts-exercise-title">
                   {this.props.track.exercise.title}
                 </span>
                 &nbsp; in&nbsp;
-                <span className={"ts-user-track " + theme}>
+                <span className="ts-user-track">
                   {this.props.track.track.title}
                 </span>
                 .
@@ -87,7 +82,7 @@ export class Testimonial extends Component {
         <div className="ts-last">
           <div className="ts-date">{this.updated}</div>
 
-          <a href={this.props.link} className={"ts-link " + theme}>
+          <a href={this.props.link} className="ts-link">
             {arrow_right}
           </a>
         </div>

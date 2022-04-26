@@ -279,7 +279,7 @@ export class Testimonials extends Component {
                     this.changeSortSelectorState();
                     this.changeSort(1, "Sort by Oldest");
                   }}
-                  className="ts-selector-item"
+                  className={"ts-selector-item " + theme}
                 >
                   Sort by Oldest
                 </div>
@@ -311,8 +311,7 @@ export class Testimonials extends Component {
             <div
               className={
                 "ts-nav-btn " +
-                (this.state.page === 1 ? "ts-disabled " : "ts-enabled ") +
-                theme
+                (this.state.page === 1 ? "ts-disabled " : "ts-enabled ")
               }
               onClick={() => {
                 if (this.state.page > 1) {

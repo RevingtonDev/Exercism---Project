@@ -38,9 +38,7 @@ export class Track extends Component {
             {" "}
             {this.props.track.title}
             <div className="ts-tes-count">
-              {" "}
-              {this.props.testimonials}
-              Testimonials{" "}
+              {this.props.testimonials}&nbsp;Testimonials
             </div>{" "}
           </div>
         )}
