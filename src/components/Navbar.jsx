@@ -13,6 +13,7 @@ import {
   reputation,
   more_vertical,
   exercism_with_text,
+  exercism,
   testimonials,
   badges,
 } from "./Images";
@@ -22,67 +23,102 @@ import defaultUser from "../images/default-user.jpg";
 export class Navbar extends Component {
   static contextType = ThemeContext;
 
+  constructor(props) {
+    super(props);
+    this.state = { menuShowing: false };
+  }
+
+  changeMenuState() {
+    this.setState({ menuShowing: !this.state.menuShowing });
+  }
+
   render() {
-    const theme = this.context ? "lt" : "drk";
+    const theme = this.context ? "lt" : "drk",
+      menu = this.state.menuShowing ? "nv-menu-showing " : "nv-menu-hidden ";
 
     return (
       <div className="page">
-        {" "}
         <section className={"nv-bar " + theme}>
-          {" "}
-          <div className="nv-view">
-            {" "}
-            <div className={"title " + theme}> {exercism_with_text}</div>{" "}
-            <ul className="nv-navigation">
-              {" "}
-              <li className={"nv-link dashboard " + theme}>
+          <div className="nv-vertical">
+            <div
+              onClick={() => this.changeMenuState()}
+              className={"nv-vertical-btn " + menu + theme}
+            >
+              <span className={"nv-btn-bar " + theme}></span>
+              <span className={"nv-btn-bar " + theme}></span>
+              <span className={"nv-btn-bar " + theme}></span>
+            </div>
+            <div className={"nv-title-logo " + theme}>{exercism}</div>
+            <div className={"nv-menu " + menu + theme}>
+              <div className="nv-view">
+                <div className={"title " + theme}> {exercism_with_text}</div>
+                <hr className={"title-divider " + theme} />
+                <ul className={"nv-navigation " + theme}>
+                  <li className={"nv-link dashboard " + theme}>
+                    <div className="nv-link-logo"> {dashboard}</div>
+                    <div className="nv-link-lk">Dashboard</div>
+                  </li>
+                  <li className={"nv-link tracks " + theme}>
+                    {" "}
+                    <div className="nv-link-logo"> {tracks}</div>{" "}
+                    <div className="nv-link-lk">Tracks</div>{" "}
+                  </li>{" "}
+                  <li className={"nv-link mentoring " + theme}>
+                    {" "}
+                    <div className="nv-link-logo"> {mentoring}</div>{" "}
+                    <div className="nv-link-lk">Mentoring</div>{" "}
+                  </li>{" "}
+                  <li className={"nv-link contribute " + theme}>
+                    {" "}
+                    <div className="nv-link-logo"> {contribute}</div>{" "}
+                    <div className="nv-link-lk">Contribute</div>{" "}
+                  </li>{" "}
+                </ul>{" "}
+              </div>{" "}
+              <section className={"nv-btn-s " + theme}>
                 {" "}
-                <div className="nv-link-logo"> {dashboard}</div>{" "}
-                <div className="nv-link-lk">Dashboard</div>{" "}
-              </li>{" "}
-              <li className={"nv-link tracks " + theme}>
-                {" "}
-                <div className="nv-link-logo"> {tracks}</div>{" "}
-                <div className="nv-link-lk">Tracks</div>{" "}
-              </li>{" "}
-              <li className={"nv-link mentoring " + theme}>
-                {" "}
-                <div className="nv-link-logo"> {mentoring}</div>{" "}
-                <div className="nv-link-lk">Mentoring</div>{" "}
-              </li>{" "}
-              <li className={"nv-link contribute " + theme}>
-                {" "}
-                <div className="nv-link-logo"> {contribute}</div>{" "}
-                <div className="nv-link-lk">Contribute</div>{" "}
-              </li>{" "}
-            </ul>{" "}
-          </div>{" "}
-          <div className="nv-controlls">
-            {" "}
-            <section className={"nv-btn-s " + theme}>
-              {" "}
-              <div className="nv-btn nrm"> {testimonials}</div>{" "}
-              <div className="nv-btn nrm"> {badges}</div>{" "}
-              <div className={"nv-btn ntm " + theme}> {notifications}</div>{" "}
-              <div
-                className={"nv-btn ntm " + theme}
-                onClick={() => {
-                  this.props.changeTheme();
-                }}
-              >
-                <div className={"theme-main-circle " + theme}>
-                  <span className={"theme-light-shine shine1 " + theme}></span>
-                  <span className={"theme-light-shine shine2 " + theme}></span>
-                  <span className={"theme-light-shine shine3 " + theme}></span>
-                  <span className={"theme-light-shine shine4 " + theme}></span>
-                  <span className={"theme-light-shine shine5 " + theme}></span>
-                  <span className={"theme-light-shine shine6 " + theme}></span>
-                  <span className={"theme-light-shine shine7 " + theme}></span>
-                  <span className={"theme-light-shine shine8 " + theme}></span>
+                <div className="nv-btn nrm"> {testimonials}</div>{" "}
+                <div className="nv-btn nrm"> {badges}</div>{" "}
+                <div className={"nv-btn ntm " + theme}> {notifications}</div>{" "}
+                <div
+                  className={"nv-btn ntm " + theme}
+                  onClick={() => {
+                    this.props.changeTheme();
+                  }}
+                >
+                  <div className={"theme-main-circle " + theme}>
+                    <span
+                      className={"theme-light-shine shine1 " + theme}
+                    ></span>
+                    <span
+                      className={"theme-light-shine shine2 " + theme}
+                    ></span>
+                    <span
+                      className={"theme-light-shine shine3 " + theme}
+                    ></span>
+                    <span
+                      className={"theme-light-shine shine4 " + theme}
+                    ></span>
+                    <span
+                      className={"theme-light-shine shine5 " + theme}
+                    ></span>
+                    <span
+                      className={"theme-light-shine shine6 " + theme}
+                    ></span>
+                    <span
+                      className={"theme-light-shine shine7 " + theme}
+                    ></span>
+                    <span
+                      className={"theme-light-shine shine8 " + theme}
+                    ></span>
+                  </div>
+                  <div className={"theme-helping-circle " + theme}></div>
                 </div>
-                <div className={"theme-helping-circle " + theme}></div>
-              </div>
-            </section>{" "}
+              </section>{" "}
+            </div>
+          </div>
+          <div className="nv-controls">
+            {" "}
             <section className={"nv-user-control " + theme}>
               {" "}
               <div className={"nv-reputation " + theme}>

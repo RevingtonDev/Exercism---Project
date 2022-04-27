@@ -1,333 +1,539 @@
- @import './const.css';
- .nv-bar {
-     position: sticky;
-     position: -webkit-sticky;
-     top: 0;
-     display: flex;
-     flex-direction: row;
-     justify-content: space-between;
-     align-items: center;
-     height: 10vh;
-     z-index: 1000;
-     overflow: hidden;
- }
- 
- .nv-bar.lt {
-     background: var(--lt-main-t);
-     box-shadow: 0 0 8px var(--lt-main);
- }
- 
- .nv-bar.drk {
-     background: var(--drk-main-t);
-     box-shadow: 0 0 8px var(--drk-secondary);
- }
- 
- .title {
-     margin: 0 20px 0 20px;
-     cursor: pointer;
- }
- 
- .title .exercism-vector-labeled {
-     width: 140px;
-     height: 80px;
- }
- 
- .title.lt .exercism-vector-labeled {
-     fill: var(--lt-main-nv);
- }
- 
- .title.drk .exercism-vector-labeled {
-     fill: var(--lt-main-t);
- }
- 
- .title .theme-change-dialogue {
-     position: absolute;
-     overflow: visible;
- }
- 
- .nv-link .exercism-dashboard,
- .nv-link .exercism-tracks,
- .nv-link .exercism-mentoring,
- .nv-link .exercism-contribute {
-     width: 30px;
-     height: 30px;
-     fill: none;
- }
- 
- .nv-link.lt .exercism-dashboard,
- .nv-link.lt .exercism-tracks,
- .nv-link.lt .exercism-mentoring,
- .nv-link.lt .exercism-contribute {
-     stroke: var(--lt-main-sv);
- }
- 
- .nv-link.drk .exercism-dashboard,
- .nv-link.drk .exercism-tracks,
- .nv-link.drk .exercism-mentoring,
- .nv-link.drk .exercism-contribute {
-     stroke: var(--drk-main-sv);
- }
- 
- .nv-navigation,
- .nv-link {
-     display: flex;
-     flex-direction: row;
-     align-items: center;
- }
- 
- .nv-navigation {
-     list-style: none;
-     margin: 0 15px 0 15px;
- }
- 
- .nv-link {
-     margin: 0 10px 0 5px;
-     cursor: pointer;
-     font-size: 1.2rem;
-     font-family: altona;
- }
- 
- .nv-link.lt {
-     color: var(--lt-main-sv);
- }
- 
- .nv-link.drk {
-     color: var(--drk-main-sv);
- }
- 
- .nv-link-lk {
-     padding: 10px;
- }
- 
- .nv-link-logo {
-     font-size: 0.8rem;
- }
- 
- .nv-bar section,
- .nv-controlls,
- .nv-view {
-     display: flex;
-     flex-direction: row;
-     align-items: center;
- }
- 
- .nv-controlls {
-     justify-self: flex-end;
- }
- 
- .nv-btn-s .exercism-testimonials,
- .nv-btn-s .exercism-badges,
- .nv-btn-s .exercism-notifications,
- .nv-reputation .exercism-reputation {
-     width: 24px;
-     height: 24px;
-     fill: none;
-     stroke-width: 1.5px;
-     stroke-linecap: round;
-     stroke-linejoin: round;
-     transition: all ease 0.1s;
- }
- 
- .nv-btn-s.lt .exercism-testimonials,
- .nv-btn-s.lt .exercism-badges {
-     stroke: var(--lt-main);
- }
- 
- .nv-btn-s.drk .exercism-testimonials,
- .nv-btn-s.drk .exercism-badges {
-     stroke: var(--drk-main);
- }
- 
- .nv-btn-s.lt .exercism-notifications {
-     stroke: var(--lt-shine);
- }
- 
- .nv-btn-s.drk .exercism-notifications {
-     stroke: var(--lt-main-t);
- }
- 
- .nv-reputation .exercism-reputation {
-     stroke: gold;
-     margin: 1px 2px 1px 2px;
- }
- 
- .nv-btn-s .exercism-testimonials:hover,
- .nv-btn-s .exercism-badges:hover {
-     stroke: var(--lt-secondary);
-     transition: all ease 0.1s;
- }
- 
- .nv-btn-s {
-     margin-right: 40px;
- }
- 
- .nv-btn {
-     cursor: pointer;
-     margin: 5px 12px 5px 12px;
- }
- 
- .ntm {
-     width: 40px;
-     height: 40px;
-     border-radius: 8px;
-     padding: 5px;
-     display: flex;
-     justify-content: center;
-     align-items: center;
- }
- 
- .ntm.lt {
-     box-shadow: 0 0 6px var(--lt-shine);
- }
- 
- .ntm.lt:hover {
-     box-shadow: 0 0 10px var(--lt-shine);
- }
- 
- .ntm.drk {
-     box-shadow: 0 0 6px var(--lt-main-t);
- }
- 
- .ntm.drk:hover {
-     box-shadow: 0 0 10px var(--lt-main-t);
- }
- 
- .theme-main-circle,
- .theme-helping-circle {
-     border-radius: 50%;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     z-index: 5;
-     overflow: -moz-hidden-unscrollable;
- }
- 
- .theme-main-circle.lt {
-     background: var(--lt-shine);
-     width: 14px;
-     height: 14px;
- }
- 
- .theme-main-circle.drk {
-     background: #fff;
-     width: 24px;
-     height: 24px;
- }
- 
- .theme-light-shine {
-     width: 6px;
-     height: 6px;
-     border-radius: 50%;
- }
- 
- .theme-main-circle .theme-light-shine,
- .nv-btn .theme-helping-circle {
-     position: absolute;
- }
- 
- .theme-main-circle .theme-light-shine.lt {
-     background-color: var(--lt-shine);
- }
- 
- .theme-main-circle .theme-light-shine.drk {
-     background-color: var(--lt-main-t);
- }
- 
- .theme-helping-circle {
-     width: 20px;
-     height: 20px;
- }
- 
- .theme-helping-circle.lt {
-     visibility: hidden;
- }
- 
- .theme-helping-circle.drk {
-     visibility: visible;
-     background-color: var(--drk-main-t);
-     transform: translateX(6px) translateY(-6px);
- }
- 
- .shine1.lt {
-     transform: translateY(-12px);
- }
- 
- .shine2.lt {
-     transform: translateY(-8px) translateX(8px);
- }
- 
- .shine3.lt {
-     transform: translateY(12px);
- }
- 
- .shine4.lt {
-     transform: translateY(8px) translateX(8px);
- }
- 
- .shine5.lt {
-     transform: translateX(12px);
- }
- 
- .shine6.lt {
-     transform: translateY(8px) translateX(-8px);
- }
- 
- .shine7.lt {
-     transform: translateX(-12px);
- }
- 
- .shine8.lt {
-     transform: translateY(-8px) translateX(-8px);
- }
- 
- .nv-reputation {
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     color: #fff;
-     font-weight: 80;
-     font-family: lora;
-     border-radius: 100px;
-     background-clip: padding-box, border-box;
-     background-color: var(--lt-main);
-     border: 3px solid #00000000;
-     background-origin: border-box;
-     border: 2px solid linear;
-     padding: 2px 12px 2px 12px;
-     margin-right: 8px;
- }
- 
- .nv-reputation {
-     background-image: linear-gradient(var(--lt-main-nv), var(--lt-main-nv)), linear-gradient(var(--lt-secondary), #20f);
- }
- 
- .nv-rep-val {
-     padding: 0 5px 0 10px;
- }
- 
- .nv-user-dp {
-     border-radius: 50%;
-     margin: 0 5px 0 10px;
-     cursor: pointer;
- }
- 
- .nv-user-control .exercism-more-vertical {
-     width: 20px;
-     height: 20px;
-     fill: none;
-     stroke-width: 1.5px;
-     margin-right: 12px;
-     cursor: pointer;
- }
- 
- .nv-user-control.lt .exercism-more-vertical {
-     stroke: black;
- }
- 
- .nv-user-control.drk .exercism-more-vertical {
-     stroke: white;
- }
- 
- .pg-content {
-     width: 100%;
- }
+@import './const.css';
+.nv-bar {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 10vh;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.nv-bar.lt {
+    background: var(--lt-main-t);
+    box-shadow: 0 0 8px var(--lt-main);
+}
+
+.nv-bar.drk {
+    background: var(--drk-main-t);
+    box-shadow: 0 0 8px var(--drk-secondary);
+}
+
+.nv-vertical {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.nv-vertical-btn {
+    width: 30px;
+    height: 32px;
+    min-width: 30px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    display: none;
+    max-width: 0;
+    margin: 0 15px 0 15px;
+}
+
+.nv-vertical-btn.lt {
+    box-shadow: 0 0 3px var(--drk-main-content);
+}
+
+.nv-vertical-btn.drk {
+    box-shadow: 0 0 3px var(--lt-main-t);
+}
+
+.nv-btn-bar {
+    width: 70%;
+    margin: 2px 0 2px 0;
+    border-radius: 2px;
+}
+
+.nv-btn-bar.lt {
+    border: 2px solid var(--drk-main-content);
+}
+
+.nv-btn-bar.drk {
+    border: 2px solid var(--lt-main-t);
+}
+
+.nv-menu,
+.nv-menu-hidden .nv-view {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nv-view {
+    flex-direction: row;
+}
+
+.nv-title-logo .exercism-vector {
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    margin: 5px;
+    display: none;
+}
+
+.nv-title-logo.lt .exercism-vector {
+    fill: var(--lt-main-nv);
+}
+
+.nv-title-logo.drk .exercism-vector {
+    fill: var(--drk-main-nv);
+}
+
+.title {
+    margin: 0 20px 0 20px;
+    cursor: pointer;
+}
+
+.title .exercism-vector-labeled {
+    width: 140px;
+}
+
+.title.lt .exercism-vector-labeled {
+    fill: var(--lt-main-nv);
+}
+
+.title.drk .exercism-vector-labeled {
+    fill: var(--lt-main-t);
+}
+
+.title .theme-change-dialogue {
+    position: absolute;
+    overflow: visible;
+}
+
+.nv-link .exercism-dashboard,
+.nv-link .exercism-tracks,
+.nv-link .exercism-mentoring,
+.nv-link .exercism-contribute {
+    width: 30px;
+    height: 30px;
+    fill: none;
+}
+
+.nv-link.lt .exercism-dashboard,
+.nv-link.lt .exercism-tracks,
+.nv-link.lt .exercism-mentoring,
+.nv-link.lt .exercism-contribute {
+    stroke: var(--lt-main-sv);
+}
+
+.nv-link.drk .exercism-dashboard,
+.nv-link.drk .exercism-tracks,
+.nv-link.drk .exercism-mentoring,
+.nv-link.drk .exercism-contribute {
+    stroke: var(--drk-main-sv);
+}
+
+.nv-navigation,
+.nv-link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.nv-navigation {
+    list-style: none;
+    margin: 0 15px 0 15px;
+}
+
+.nv-link {
+    margin: 0 10px 0 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-family: altona;
+}
+
+.nv-link.lt {
+    color: var(--lt-main-sv);
+}
+
+.nv-link.drk {
+    color: var(--drk-main-sv);
+}
+
+.nv-link-lk {
+    padding: 10px;
+}
+
+.nv-link-logo {
+    font-size: 0.8rem;
+}
+
+.nv-bar section,
+-nv-controls section,
+.nv-controls,
+.nv-view {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.nv-controls {
+    justify-self: flex-end;
+}
+
+.nv-btn-s .exercism-testimonials,
+.nv-btn-s .exercism-badges,
+.nv-btn-s .exercism-notifications,
+.nv-reputation .exercism-reputation {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke-width: 1.5px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: all ease 0.1s;
+}
+
+.nv-btn-s.lt .exercism-testimonials,
+.nv-btn-s.lt .exercism-badges {
+    stroke: var(--lt-main);
+}
+
+.nv-btn-s.drk .exercism-testimonials,
+.nv-btn-s.drk .exercism-badges {
+    stroke: var(--drk-main);
+}
+
+.nv-btn-s.lt .exercism-notifications {
+    stroke: var(--lt-shine);
+}
+
+.nv-btn-s.drk .exercism-notifications {
+    stroke: var(--lt-main-t);
+}
+
+.nv-reputation .exercism-reputation {
+    stroke: gold;
+    margin: 1px 2px 1px 2px;
+}
+
+.nv-btn-s .exercism-testimonials:hover,
+.nv-btn-s .exercism-badges:hover {
+    stroke: var(--lt-secondary);
+    transition: all ease 0.1s;
+}
+
+.nv-btn-s {
+    margin-right: 40px;
+}
+
+.nv-btn {
+    cursor: pointer;
+    margin: 5px 12px 5px 12px;
+}
+
+.ntm {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ntm.lt {
+    box-shadow: 0 0 6px var(--lt-shine);
+}
+
+.ntm.lt:hover {
+    box-shadow: 0 0 10px var(--lt-shine);
+}
+
+.ntm.drk {
+    box-shadow: 0 0 6px var(--lt-main-t);
+}
+
+.ntm.drk:hover {
+    box-shadow: 0 0 10px var(--lt-main-t);
+}
+
+.theme-main-circle,
+.theme-helping-circle {
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    overflow: -moz-hidden-unscrollable;
+}
+
+.theme-main-circle.lt {
+    background: var(--lt-shine);
+    width: 14px;
+    height: 14px;
+}
+
+.theme-main-circle.drk {
+    background: #fff;
+    width: 24px;
+    height: 24px;
+}
+
+.theme-light-shine {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
+
+.theme-main-circle .theme-light-shine,
+.nv-btn .theme-helping-circle {
+    position: absolute;
+}
+
+.theme-main-circle .theme-light-shine.lt {
+    background-color: var(--lt-shine);
+}
+
+.theme-main-circle .theme-light-shine.drk {
+    background-color: var(--lt-main-t);
+}
+
+.theme-helping-circle {
+    width: 20px;
+    height: 20px;
+}
+
+.theme-helping-circle.lt {
+    visibility: hidden;
+}
+
+.theme-helping-circle.drk {
+    visibility: visible;
+    background-color: var(--drk-main-t);
+    transform: translateX(6px) translateY(-6px);
+}
+
+.shine1.lt {
+    transform: translateY(-12px);
+}
+
+.shine2.lt {
+    transform: translateY(-8px) translateX(8px);
+}
+
+.shine3.lt {
+    transform: translateY(12px);
+}
+
+.shine4.lt {
+    transform: translateY(8px) translateX(8px);
+}
+
+.shine5.lt {
+    transform: translateX(12px);
+}
+
+.shine6.lt {
+    transform: translateY(8px) translateX(-8px);
+}
+
+.shine7.lt {
+    transform: translateX(-12px);
+}
+
+.shine8.lt {
+    transform: translateY(-8px) translateX(-8px);
+}
+
+.nv-reputation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--lt-main-t);
+    font-weight: 80;
+    font-family: lora;
+    border-radius: 100px;
+    background-clip: padding-box, border-box;
+    background-color: var(--lt-main);
+    border: 3px solid #00000000;
+    background-origin: border-box;
+    border: 2px solid linear;
+    padding: 2px 12px 2px 12px;
+    margin-right: 8px;
+}
+
+.nv-reputation {
+    background-image: linear-gradient(var(--lt-main-nv), var(--lt-main-nv)), linear-gradient(var(--lt-secondary), #20f);
+}
+
+.nv-rep-val {
+    padding: 0 5px 0 10px;
+}
+
+.nv-user-dp {
+    border-radius: 50%;
+    margin: 0 5px 0 10px;
+    cursor: pointer;
+}
+
+.nv-user-control .exercism-more-vertical {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke-width: 1.5px;
+    margin-right: 12px;
+    cursor: pointer;
+}
+
+.nv-user-control.lt .exercism-more-vertical {
+    stroke: var(--drk-main-content);
+}
+
+.nv-user-control.drk .exercism-more-vertical {
+    stroke: var(--lt-main-t);
+}
+
+.pg-content {
+    width: 100%;
+}
+
+@media screen and (max-width: 1280px) {
+    .nv-bar {
+        overflow: visible;
+    }
+    .nv-vertical-btn,
+    .nv-title-logo .exercism-vector,
+    .nv-view {
+        max-width: fit-content;
+    }
+    .nv-vertical-btn,
+    .nv-title-logo .exercism-vector {
+        display: flex;
+        position: relative;
+    }
+    .nv-vertical-btn.nv-menu-showing .nv-btn-bar {
+        position: absolute;
+    }
+    .nv-vertical-btn.nv-menu-showing .nv-btn-bar:first-child {
+        transform: rotateZ(45deg);
+    }
+    .nv-vertical-btn.nv-menu-showing .nv-btn-bar:nth-child(2) {
+        border: 2px solid transparent;
+    }
+    .nv-vertical-btn.nv-menu-showing .nv-btn-bar:last-child {
+        transform: rotateZ(-45deg);
+    }
+    .nv-btn-s {
+        margin-right: 0;
+    }
+    .nv-view {
+        flex-direction: column;
+    }
+    .nv-vertical .nv-menu {
+        position: absolute;
+        z-index: 500000;
+        height: 100vh;
+        top: 100%;
+        flex-direction: column;
+    }
+    .nv-vertical .nv-menu.nv-menu-showing {
+        left: 0%;
+    }
+    .nv-vertical .nv-menu.nv-menu-hidden {
+        left: -100%;
+    }
+    .nv-menu {
+        justify-content: flex-start;
+        overflow: auto;
+    }
+    .nv-menu.lt {
+        background-color: var(--lt-main-nv);
+    }
+    .nv-menu.drk {
+        background-color: var(--drk-secondary);
+    }
+    .nv-navigation {
+        flex-direction: column;
+    }
+    .title {
+        margin: 25px 0 15px 0;
+    }
+    .title.lt .exercism-vector-labeled {
+        fill: var(--lt-secondary-sv);
+    }
+    .title.drk .exercism-vector-labeled {
+        fill: var(--drk-main-t);
+    }
+    .title-divider {
+        width: 90%;
+        height: 2px;
+    }
+    .title-divider.lt {
+        background-color: var(--lt-main-t);
+    }
+    .title-divider.drk {
+        background-color: var(--drk-main-content);
+    }
+    .theme-helping-circle.lt {
+        background-color: transparent;
+    }
+    .theme-helping-circle.drk {
+        background-color: var(--drk-secondary);
+    }
+    .nv-navigation {
+        margin: 15px 20px 15px 20px;
+    }
+    .nv-link {
+        margin: 5px;
+    }
+    .nv-bar section.nv-btn-s {
+        display: Grid;
+    }
+    .nv-link {
+        font-weight: 800;
+    }
+    .nv-link.drk {
+        color: var(--lt-secondary-d-light);
+    }
+    .nv-link.lt {
+        color: var(--drk-secondary-d-light);
+    }
+    .nv-link.drk .exercism-dashboard,
+    .nv-link.drk .exercism-tracks,
+    .nv-link.drk .exercism-mentoring,
+    .nv-link.drk .exercism-contribute {
+        stroke: var(--lt-secondary-d-light);
+    }
+    .nv-link.lt .exercism-dashboard,
+    .nv-link.lt .exercism-tracks,
+    .nv-link.lt .exercism-mentoring,
+    .nv-link.lt .exercism-contribute {
+        stroke: var(--drk-secondary-d-light);
+    }
+    .nv-btn-s.drk .exercism-testimonials,
+    .nv-btn-s.drk .exercism-badges {
+        stroke: var(--drk-main-t);
+    }
+    .nv-btn-s.lt .exercism-testimonials,
+    .nv-btn-s.lt .exercism-badges {
+        stroke: var(--drk-main-sv);
+    }
+    .nv-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .nrm {
+        grid-row: 1 / 1;
+    }
+    .ntm {
+        grid-row: 2 / 2;
+    }
+}

@@ -17,9 +17,9 @@
 .ts-track-logo {
     background-color: #222222aa;
     backdrop-filter: blur(2px);
-    height: 90px;
-    width: 90px;
     padding: 10px;
+    width: 90px;
+    height: 90px;
     cursor: pointer;
 }
 
@@ -94,5 +94,10 @@
     }
     .ts-track-logo {
         padding: 5px;
+        width: fit-content;
+    }
+    .ts-clear-track .ts-track-logo {
+        width: 70px;
+        height: 100%;
     }
 }
