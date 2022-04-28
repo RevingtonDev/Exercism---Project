@@ -175,17 +175,38 @@ export class Testimonials extends Component {
         );
       }
     } else if (this.state.pages - 3 <= this.state.page) {
+      if (this.state.page > 3) {
+        jumpButtons.push(
+          <Jump current={this.state.page} key="1" jump={this.setPage} val="1" />
+        );
+        jumpButtons.push(<div className="pag-more">...</div>);
+      }
       for (let i = this.state.pages - 5; i <= this.state.pages; i++) {
         jumpButtons.push(
           <Jump current={this.state.page} key={i} jump={this.setPage} val={i} />
         );
       }
     } else {
+      if (this.state.page > 3) {
+        jumpButtons.push(
+          <Jump current={this.state.page} key="1" jump={this.setPage} val="1" />
+        );
+        jumpButtons.push(<div className="pag-more">...</div>);
+      }
       for (let i = this.state.page - 2; i <= this.state.page + 2; i++) {
         jumpButtons.push(
           <Jump current={this.state.page} key={i} jump={this.setPage} val={i} />
         );
       }
+      jumpButtons.push(<div className="pag-more">...</div>);
+      jumpButtons.push(
+        <Jump
+          current={this.state.page}
+          key={this.state.pages}
+          jump={this.setPage}
+          val={this.state.pages}
+        />
+      );
     }
     return (
       <div className={"ts-content " + theme}>
