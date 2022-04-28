@@ -1,0 +1,74 @@
+.pg-content .err-content {
+    position: absolute;
+    right: 0;
+    top: 10%;
+}
+
+.err {
+    margin: 15px;
+    width: 300px;
+    height: fit-content;
+    display: flex;
+    padding: 15px;
+    justify-content: flex-start;
+    align-items: center;
+    color: var(--const-err);
+    position: relative;
+}
+
+.err-content {
+    max-width: 75%;
+    font-family: oxygen;
+}
+
+.err-content.lt .err {
+    background-color: var(--drk-main-content);
+}
+
+.err-content.drk .err {
+    background-color: var(--lt-main-t);
+}
+
+.err .close-btn {
+    position: absolute;
+    right: 0;
+}
+
+.close-btn {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.close-span {
+    height: 1px;
+    width: 85%;
+}
+
+.close-btn .close-span {
+    position: absolute;
+    border-radius: 8px;
+}
+
+.err-content.lt .close-span {
+    border: 2px solid var(--lt-main-t);
+    background-color: var(--lt-main-t);
+}
+
+.err-content.drk .close-span {
+    border: 2px solid var(--drk-main-content);
+    background-color: var(--drk-main-content);
+}
+
+.close-span:first-child {
+    transform: rotateZ(45deg);
+}
+
+.close-span:last-child {
+    transform: rotateZ(-45deg);
+}

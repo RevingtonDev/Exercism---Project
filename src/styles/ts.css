@@ -725,8 +725,8 @@
 }
 
 .ts-pg {
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
@@ -734,6 +734,7 @@
     cursor: pointer;
     font-family: cabin;
     font-weight: 1000;
+    font-size: 0.8rem;
 }
 
 .ts-pg.drk {

@@ -3,6 +3,7 @@ import React, { Component, createRef } from "react";
 import { Testimonial } from "./Testimonial";
 import { Track } from "./Track";
 import { Jump } from "./Jump";
+import { Error } from "./Error";
 
 import { getTestimonials, getTracks } from "../api/retrieve";
 
@@ -39,6 +40,7 @@ export class Testimonials extends Component {
     this.searchValue = "";
     this.setPage = this.setPage.bind(this);
     this.setCurrentTrack = this.setCurrentTrack.bind(this);
+    this.removeErrorBox = this.removeErrorBox.bind(this);
   }
 
   // This method is used to append testimonial data when client visits.
@@ -69,6 +71,16 @@ export class Testimonials extends Component {
         this.state.search,
         this.state.sort
       )
+        .catch((e) => {
+          this.errors.push(
+            <Error
+              key={this.errors.length}
+              index={this.errors.length}
+              remove={this.removeErrorBox}
+              err={e.message}
+            />
+          );
+        })
         .then((res) => {
           // sets total page count
           this.setState({ pages: res.testimonials.pagination.total_pages });
@@ -105,25 +117,36 @@ export class Testimonials extends Component {
 
   // This method is used to call track API.
   retrieveTracks() {
-    getTracks().then(({ tracks }) => {
-      // clearing tracks array
-      this.tracks = [];
-      // inserting an undefined track to clear track selection.
-      this.tracks.push(<Track change={this.setCurrentTrack} key={0} />);
-      tracks.forEach((track) => {
-        // this only adds tracks those have at least 1 testimonial
-        if (this.tracksContainingTestimonials.includes(track.slug)) {
-          this.tracks.push(
-            <Track
-              change={this.setCurrentTrack}
-              key={track.slug}
-              track={track}
-              testimonials={this.track_counts[track.slug]}
-            />
-          );
-        }
+    getTracks()
+      .catch((e) => {
+        this.errors.push(
+          <Error
+            key={this.errors.length}
+            index={this.errors.length}
+            remove={this.removeErrorBox}
+            err={e.message}
+          />
+        );
+      })
+      .then(({ tracks }) => {
+        // clearing tracks array
+        this.tracks = [];
+        // inserting an undefined track to clear track selection.
+        this.tracks.push(<Track change={this.setCurrentTrack} key={0} />);
+        tracks.forEach((track) => {
+          // this only adds tracks those have at least 1 testimonial
+          if (this.tracksContainingTestimonials.includes(track.slug)) {
+            this.tracks.push(
+              <Track
+                change={this.setCurrentTrack}
+                key={track.slug}
+                track={track}
+                testimonials={this.track_counts[track.slug]}
+              />
+            );
+          }
+        });
       });
-    });
   }
 
   // changes current track selection (could be undefined)
@@ -171,9 +194,15 @@ export class Testimonials extends Component {
     }
   }
 
+  removeErrorBox(index) {
+    this.errors.splice(index);
+    this.forceUpdate();
+  }
+
   render() {
     let theme = this.context ? "lt" : "drk";
 
+    // uses to show data or loading animation
     let tableData;
     if (this.state.dataRetrieved) {
       tableData = this.data;
@@ -196,6 +225,7 @@ export class Testimonials extends Component {
       );
     }
 
+    // page navigation buttons
     let jumpButtons = [];
     if (this.state.page < 3) {
       for (let i = 1; i <= Math.min(this.state.pages, 4); i++) {
@@ -407,6 +437,11 @@ export class Testimonials extends Component {
               Next
             </div>
           </div>
+        </div>
+        <div className={"err-content " + theme}>
+          {this.errors.map((err) => {
+            return err;
+          })}
         </div>
       </div>
     );
