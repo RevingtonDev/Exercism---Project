@@ -11,7 +11,6 @@ export const getTestimonials = async(page, track, exercise, order) => {
         (exercise === null || exercise === "" ? "" : "&exercise=" + exercise) +
         "&order=" +
         (order === 0 ? "newest_first" : "oldest_first");
-    console.log(params);
     return await fetch(Routes.testimonials + params).then((res) => res.json());
 };
 

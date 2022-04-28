@@ -234,7 +234,11 @@ export class Testimonials extends Component {
         );
       }
       if (this.state.pages > 4) {
-        jumpButtons.push(<div className={"pag-more " + theme}>...</div>);
+        jumpButtons.push(
+          <div key={0} className={"pag-more " + theme}>
+            ...
+          </div>
+        );
         jumpButtons.push(
           <Jump
             current={this.state.page}
@@ -249,7 +253,11 @@ export class Testimonials extends Component {
         jumpButtons.push(
           <Jump current={this.state.page} key="1" jump={this.setPage} val="1" />
         );
-        jumpButtons.push(<div className={"pag-more " + theme}>...</div>);
+        jumpButtons.push(
+          <div key={0} className={"pag-more " + theme}>
+            ...
+          </div>
+        );
       }
       for (
         let i = Math.max(this.state.pages - 2, 2);
@@ -265,14 +273,22 @@ export class Testimonials extends Component {
         jumpButtons.push(
           <Jump current={this.state.page} key="1" jump={this.setPage} val="1" />
         );
-        jumpButtons.push(<div className={"pag-more " + theme}>...</div>);
+        jumpButtons.push(
+          <div key={0} className={"pag-more " + theme}>
+            ...
+          </div>
+        );
       }
       for (let i = this.state.page - 1; i <= this.state.page + 1; i++) {
         jumpButtons.push(
           <Jump current={this.state.page} key={i} jump={this.setPage} val={i} />
         );
       }
-      jumpButtons.push(<div className={"pag-more " + theme}>...</div>);
+      jumpButtons.push(
+        <div key={0} className={"pag-more " + theme}>
+          ...
+        </div>
+      );
       jumpButtons.push(
         <Jump
           current={this.state.page}
