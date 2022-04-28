@@ -34,10 +34,11 @@ export class Testimonials extends Component {
     this.track_container = createRef();
     this.data = [];
     this.tracks = [];
-    this.track_counts = {};
     this.errors = [];
     this.tracksContainingTestimonials = [];
+    this.track_counts = {};
     this.searchValue = "";
+
     this.setPage = this.setPage.bind(this);
     this.setCurrentTrack = this.setCurrentTrack.bind(this);
     this.removeErrorBox = this.removeErrorBox.bind(this);
