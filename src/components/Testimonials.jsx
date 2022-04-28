@@ -11,6 +11,9 @@ import "../styles/ts.css";
 import { badges, testimonials, chevron_down, search } from "./Images";
 import { ThemeContext } from "../theme/ThemeContext";
 
+/*
+  Testimonials page content.
+*/
 export class Testimonials extends Component {
   static contextType = ThemeContext;
   constructor(props) {
@@ -38,18 +41,26 @@ export class Testimonials extends Component {
     this.setCurrentTrack = this.setCurrentTrack.bind(this);
   }
 
+  // This method is used to append testimonial data when client visits.
   componentDidMount() {
     this.retrieveData();
   }
 
+  // This either (if it's hidden)shows or (if it's shown)hides sort selector box.
   changeSortSelectorState() {
     this.setState({ sortSelectorShowing: !this.state.sortSelectorShowing });
   }
 
+  // This either drops or rolls back the track drop down box.
   changeTrackSelectorState() {
     this.setState({ trackSelectorShowing: !this.state.trackSelectorShowing });
   }
 
+  /*
+    This method is used to call testimonial API and append that data to an array(this.data).
+
+    setTimeout() is used only show the loading ui.
+  */
   retrieveData() {
     setTimeout(() => {
       getTestimonials(
@@ -59,15 +70,20 @@ export class Testimonials extends Component {
         this.state.sort
       )
         .then((res) => {
+          // sets total page count
           this.setState({ pages: res.testimonials.pagination.total_pages });
+          // removes previously retrieved data
           this.data = [];
+          // sets tracks which testimonials have been uploaded.
           this.tracksContainingTestimonials = res.testimonials.tracks;
+          // sets how many testimonials do each track has.
           this.track_counts = res.testimonials.track_counts;
           res.testimonials.results.forEach((track) => {
             this.data.push(
               <Testimonial className="ts-track" key={track.id} track={track} />
             );
           });
+          // if there's no data.
           if (this.data.length < 1) {
             this.data.push(
               <div className={"ts-no-result " + (this.context ? "lt" : "drk")}>
@@ -77,7 +93,9 @@ export class Testimonials extends Component {
           }
         })
         .finally(() => {
+          // sets data received to true.
           this.dataRetrieved(true);
+          // tracks will be receive once per each visit; due to performance reductions.
           if (this.tracks.length < 1) {
             this.retrieveTracks();
           }
@@ -85,11 +103,15 @@ export class Testimonials extends Component {
     }, 1000);
   }
 
+  // This method is used to call track API.
   retrieveTracks() {
     getTracks().then(({ tracks }) => {
+      // clearing tracks array
       this.tracks = [];
+      // inserting an undefined track to clear track selection.
       this.tracks.push(<Track change={this.setCurrentTrack} key={0} />);
       tracks.forEach((track) => {
+        // this only adds tracks those have at least 1 testimonial
         if (this.tracksContainingTestimonials.includes(track.slug)) {
           this.tracks.push(
             <Track
@@ -104,8 +126,10 @@ export class Testimonials extends Component {
     });
   }
 
+  // changes current track selection (could be undefined)
   setCurrentTrack(track) {
     this.changeTrackSelectorState();
+    // if track selection from drop down box is equal to current selected track API call won't run.
     if (this.state.track !== (track === undefined ? null : track)) {
       this.setState({
         page: 1,
@@ -117,6 +141,7 @@ export class Testimonials extends Component {
     }
   }
 
+  // changes current search parameter
   setSearchParam(param) {
     if (this.searchValue !== param) {
       this.searchValue = param;
@@ -125,15 +150,18 @@ export class Testimonials extends Component {
     }
   }
 
+  // sets data received variable to true;
   dataRetrieved(isRetrieved) {
     this.setState({ dataRetrieved: isRetrieved });
   }
 
+  // changes current page
   setPage(num) {
     this.setState({ page: num, dataRetrieved: false });
     this.retrieveData();
   }
 
+  // changes current sort parameter
   changeSort(sort, show) {
     if (this.state.sort !== sort) {
       this.sort_selector.current.innerHTML = show;
@@ -145,6 +173,7 @@ export class Testimonials extends Component {
 
   render() {
     let theme = this.context ? "lt" : "drk";
+
     let tableData;
     if (this.state.dataRetrieved) {
       tableData = this.data;
@@ -169,36 +198,51 @@ export class Testimonials extends Component {
 
     let jumpButtons = [];
     if (this.state.page < 3) {
-      for (let i = 1; i <= Math.min(this.state.pages, 5); i++) {
+      for (let i = 1; i <= Math.min(this.state.pages, 4); i++) {
         jumpButtons.push(
           <Jump current={this.state.page} key={i} jump={this.setPage} val={i} />
         );
       }
-    } else if (this.state.pages - 3 <= this.state.page) {
-      if (this.state.page > 3) {
+      if (this.state.pages > 4) {
+        jumpButtons.push(<div className={"pag-more " + theme}>...</div>);
+        jumpButtons.push(
+          <Jump
+            current={this.state.page}
+            key={this.state.pages}
+            jump={this.setPage}
+            val={this.state.pages}
+          />
+        );
+      }
+    } else if (this.state.pages - 2 < this.state.page) {
+      if (this.state.page >= 3) {
         jumpButtons.push(
           <Jump current={this.state.page} key="1" jump={this.setPage} val="1" />
         );
-        jumpButtons.push(<div className="pag-more">...</div>);
+        jumpButtons.push(<div className={"pag-more " + theme}>...</div>);
       }
-      for (let i = this.state.pages - 5; i <= this.state.pages; i++) {
+      for (
+        let i = Math.max(this.state.pages - 2, 2);
+        i <= this.state.pages;
+        i++
+      ) {
         jumpButtons.push(
           <Jump current={this.state.page} key={i} jump={this.setPage} val={i} />
         );
       }
     } else {
-      if (this.state.page > 3) {
+      if (this.state.page >= 3) {
         jumpButtons.push(
           <Jump current={this.state.page} key="1" jump={this.setPage} val="1" />
         );
-        jumpButtons.push(<div className="pag-more">...</div>);
+        jumpButtons.push(<div className={"pag-more " + theme}>...</div>);
       }
-      for (let i = this.state.page - 2; i <= this.state.page + 2; i++) {
+      for (let i = this.state.page - 1; i <= this.state.page + 1; i++) {
         jumpButtons.push(
           <Jump current={this.state.page} key={i} jump={this.setPage} val={i} />
         );
       }
-      jumpButtons.push(<div className="pag-more">...</div>);
+      jumpButtons.push(<div className={"pag-more " + theme}>...</div>);
       jumpButtons.push(
         <Jump
           current={this.state.page}

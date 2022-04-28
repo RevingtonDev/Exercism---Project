@@ -5,6 +5,11 @@ import "../styles/track.css";
 import { badges } from "./Images";
 import { ThemeContext } from "../theme/ThemeContext";
 
+/**
+ * This component is used in track selection.
+ *
+ * props.track = Track data from API call
+ */
 export class Track extends Component {
   static contextType = ThemeContext;
   render() {

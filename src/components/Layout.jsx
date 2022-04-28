@@ -19,13 +19,11 @@ export class Layout extends Component {
 
   render() {
     return (
-      <div className="layout">
-        <ThemeContext.Provider value={this.state.isLight}>
-          <Navbar changeTheme={this.changeTheme}>
-            <Testimonials />
-          </Navbar>
-        </ThemeContext.Provider>
-      </div>
+      <ThemeContext.Provider value={this.state.isLight}>
+        <Navbar changeTheme={this.changeTheme}>
+          <Testimonials />
+        </Navbar>
+      </ThemeContext.Provider>
     );
   }
 }

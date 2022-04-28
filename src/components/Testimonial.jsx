@@ -3,12 +3,22 @@ import { Component } from "react";
 import "../styles/ts.css";
 import { arrow_right } from "./Images";
 
+/*
+  This is rendered in Testimonials table.
+
+  used to show a single testimonial.
+*/
 export class Testimonial extends Component {
   constructor(props) {
     super(props);
     this.updated = this.getUpdated(new Date(props.track.created_at));
   }
 
+  /*
+    returns how much time before this testimonial was updated.
+
+    after 12pm every testimonial that has been uploaded will be shown as 1 day before; regardless of time.
+  */
   getUpdated(date) {
     let now = new Date();
     if (now.getFullYear() > date.getFullYear()) {

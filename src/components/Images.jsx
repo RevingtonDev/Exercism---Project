@@ -1,3 +1,8 @@
+/*
+  This file contains SVG vector files as html dom elements so that they will be compatible to both dark and 
+  light themes when styling.
+*/
+
 export const badges = (
   <svg className="exercism-badges" viewBox="0 0 16 16">
     {" "}

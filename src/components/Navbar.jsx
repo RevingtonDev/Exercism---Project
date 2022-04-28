@@ -20,6 +20,13 @@ import {
 
 import defaultUser from "../images/default-user.jpg";
 
+/*
+  This is the main navigation panel.
+
+  Links have been replaced with other elements.
+  
+  Navigation panel is horizontal by default but for small devices it's been managed to be vertical.
+*/
 export class Navbar extends Component {
   static contextType = ThemeContext;
 
@@ -28,6 +35,7 @@ export class Navbar extends Component {
     this.state = { menuShowing: false };
   }
 
+  // manages vertical navigation panel.
   changeMenuState() {
     this.setState({ menuShowing: !this.state.menuShowing });
   }
