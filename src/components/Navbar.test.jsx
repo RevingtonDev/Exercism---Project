@@ -16,8 +16,24 @@ afterEach(() => {
   container = null;
 });
 
-it("Navbar component test", () => {
+it("Navbar component test with theme changing event", () => {
+  const theme = {
+    isLight: true,
+  };
+
+  const changeTheme = () => {
+    theme.isLight = !theme.isLight;
+  };
+
   act(() => {
-    render(<Navbar />, container);
+    render(<Navbar changeTheme={changeTheme} />, container);
   });
+
+  const themeChanger = container.getElementsByClassName("ntm")[1];
+
+  act(() => {
+    themeChanger.dispatchEvent(new MouseEvent("click"));
+  });
+
+  expect(theme.isLight).toBe(true);
 });

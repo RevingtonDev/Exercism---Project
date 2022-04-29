@@ -85,6 +85,7 @@ export class Navbar extends Component {
                 <div className="nv-btn nrm"> {badges}</div>
                 <div className={"nv-btn ntm " + theme}> {notifications}</div>
                 <div
+                  id="themeChanger"
                   className={"nv-btn ntm " + theme}
                   onClick={() => {
                     this.props.changeTheme();
