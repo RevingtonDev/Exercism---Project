@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React, { Component } from "react";
 
 import "../styles/ts.css";
 import { arrow_right } from "./Images";
@@ -49,9 +49,9 @@ export class Testimonial extends Component {
           <div className="ts-d-lg">
             <div className="lang-lg">
               <img
+                className="lg ts-lang-ico"
                 src={this.props.track.track.icon_url}
                 alt="lang-logo"
-                className="lg ts-lang-ico"
               />
             </div>
 
@@ -92,7 +92,7 @@ export class Testimonial extends Component {
         <div className="ts-last">
           <div className="ts-date">{this.updated}</div>
 
-          <a href={this.props.link} className="ts-link">
+          <a href={this.props.track.link} className="ts-link">
             {arrow_right}
           </a>
         </div>

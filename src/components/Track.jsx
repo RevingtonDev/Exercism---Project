@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React, { Component } from "react";
 
 import "../styles/track.css";
 
@@ -23,7 +23,7 @@ export class Track extends Component {
       >
         {" "}
         {this.props.track === undefined ? (
-          <div className="ts-track-logo"> {badges}</div>
+          <div className="ts-track-logo">{badges}</div>
         ) : (
           <img
             className="ts-track-logo"
@@ -40,11 +40,10 @@ export class Track extends Component {
           ""
         ) : (
           <div className="ts-track-title">
-            {" "}
-            {this.props.track.title}
+            {this.props.track.title}{" "}
             <div className="ts-tes-count">
               {this.props.testimonials}&nbsp;Testimonials
-            </div>{" "}
+            </div>
           </div>
         )}
       </div>

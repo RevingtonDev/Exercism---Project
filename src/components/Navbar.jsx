@@ -22,7 +22,7 @@ import defaultUser from "../images/default-user.jpg";
 
 /*
   This is the main navigation panel.
-
+ 
   Links have been replaced with other elements.
   
   Navigation panel is horizontal by default but for small devices it's been managed to be vertical.
@@ -67,27 +67,23 @@ export class Navbar extends Component {
                     <div className="nv-link-lk">Dashboard</div>
                   </li>
                   <li className={"nv-link tracks " + theme}>
-                    {" "}
-                    <div className="nv-link-logo"> {tracks}</div>{" "}
-                    <div className="nv-link-lk">Tracks</div>{" "}
-                  </li>{" "}
+                    <div className="nv-link-logo"> {tracks}</div>
+                    <div className="nv-link-lk">Tracks</div>
+                  </li>
                   <li className={"nv-link mentoring " + theme}>
-                    {" "}
-                    <div className="nv-link-logo"> {mentoring}</div>{" "}
-                    <div className="nv-link-lk">Mentoring</div>{" "}
-                  </li>{" "}
+                    <div className="nv-link-logo"> {mentoring}</div>
+                    <div className="nv-link-lk">Mentoring</div>
+                  </li>
                   <li className={"nv-link contribute " + theme}>
-                    {" "}
-                    <div className="nv-link-logo"> {contribute}</div>{" "}
-                    <div className="nv-link-lk">Contribute</div>{" "}
-                  </li>{" "}
-                </ul>{" "}
-              </div>{" "}
+                    <div className="nv-link-logo"> {contribute}</div>
+                    <div className="nv-link-lk">Contribute</div>
+                  </li>
+                </ul>
+              </div>
               <section className={"nv-btn-s " + theme}>
-                {" "}
-                <div className="nv-btn nrm"> {testimonials}</div>{" "}
-                <div className="nv-btn nrm"> {badges}</div>{" "}
-                <div className={"nv-btn ntm " + theme}> {notifications}</div>{" "}
+                <div className="nv-btn nrm"> {testimonials}</div>
+                <div className="nv-btn nrm"> {badges}</div>
+                <div className={"nv-btn ntm " + theme}> {notifications}</div>
                 <div
                   className={"nv-btn ntm " + theme}
                   onClick={() => {
@@ -122,30 +118,27 @@ export class Navbar extends Component {
                   </div>
                   <div className={"theme-helping-circle " + theme}></div>
                 </div>
-              </section>{" "}
+              </section>
             </div>
           </div>
           <div className="nv-controls">
-            {" "}
             <section className={"nv-user-control " + theme}>
-              {" "}
               <div className={"nv-reputation " + theme}>
-                {" "}
                 {reputation}
-                <span className="nv-rep-val">300</span>{" "}
-              </div>{" "}
+                <span className="nv-rep-val">300</span>
+              </div>
               <img
                 className="nv-user-dp"
                 src={defaultUser}
                 width="40"
                 height="40"
                 alt="User"
-              />{" "}
+              />
               {more_vertical}
-            </section>{" "}
-          </div>{" "}
-        </section>{" "}
-        <section className="pg-content"> {this.props.children}</section>{" "}
+            </section>
+          </div>
+        </section>
+        <section className="pg-content"> {this.props.children}</section>
       </div>
     );
   }
