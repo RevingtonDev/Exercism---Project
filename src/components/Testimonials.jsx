@@ -236,7 +236,7 @@ export class Testimonials extends Component {
       }
       if (this.state.pages > 4) {
         jumpButtons.push(
-          <div key={0} className={"pag-more " + theme}>
+          <div key="last" className={"pag-more " + theme}>
             ...
           </div>
         );
@@ -250,12 +250,12 @@ export class Testimonials extends Component {
         );
       }
     } else if (this.state.pages - 2 < this.state.page) {
-      if (this.state.page >= 3) {
+      if (this.state.page > 2) {
         jumpButtons.push(
           <Jump current={this.state.page} key="1" jump={this.setPage} val="1" />
         );
         jumpButtons.push(
-          <div key={0} className={"pag-more " + theme}>
+          <div key="first" className={"pag-more " + theme}>
             ...
           </div>
         );
@@ -270,12 +270,12 @@ export class Testimonials extends Component {
         );
       }
     } else {
-      if (this.state.page >= 3) {
+      if (this.state.page > 2) {
         jumpButtons.push(
           <Jump current={this.state.page} key="1" jump={this.setPage} val="1" />
         );
         jumpButtons.push(
-          <div key={0} className={"pag-more " + theme}>
+          <div key="first" className={"pag-more " + theme}>
             ...
           </div>
         );
@@ -286,7 +286,7 @@ export class Testimonials extends Component {
         );
       }
       jumpButtons.push(
-        <div key={0} className={"pag-more " + theme}>
+        <div key="last" className={"pag-more " + theme}>
           ...
         </div>
       );

@@ -1,4 +1,12 @@
 @import './const.css';
+.page.lt {
+    background-color: var(--lt-main-t);
+}
+
+.page.drk {
+    background-color: var(--drk-main-content);
+}
+
 .nv-bar {
     position: sticky;
     position: -webkit-sticky;

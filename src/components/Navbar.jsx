@@ -45,7 +45,7 @@ export class Navbar extends Component {
       menu = this.state.menuShowing ? "nv-menu-showing " : "nv-menu-hidden ";
 
     return (
-      <div className="page">
+      <div className={"page " + theme}>
         <section className={"nv-bar " + theme}>
           <div className="nv-vertical">
             <div
